@@ -46,7 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
+*.pyc
 *.swp
 *~
 _build/*
