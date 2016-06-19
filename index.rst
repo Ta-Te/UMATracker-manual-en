@@ -9,7 +9,8 @@ Welcome to UMATracker's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :numbered:
+   :maxdepth: 5
 
    _md/test.md
 
