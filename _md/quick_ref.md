@@ -175,6 +175,7 @@
 メニューより`Background/Create Background`を選択すると，バックグラウンド生成画面が表示される．
 
 #### Color Filtering
+カラーマーカーが付いている場合など追跡物体が特徴的な色を有している場合，その色を抽出するフィルタを作成することで追跡物体を抽出することができる．
 
 ```eval_rst
 .. list-table:: ColorFilter
@@ -185,6 +186,11 @@
     * - .. image:: img/quick/uma_filtergenerator_colorfilter.png
       - 右のカラーパレットで色を選択し左の類似度（数値）を調整することで色を選択する．
 ```
+
+`Color Filter`は`Filters`ツールチップに含まれている．
+ブロック左の赤色の部分をクリックするとカラーパレットがひらき，抽出したい色を選択することができる．
+ブロック右の数値入力欄は色の類似度を表しており，選択した色とどの程度類似した色を抽出するか調整可能となっている．
+
 ![txt](img/quick/uma_filtergenerator_colorfilterio.png)
 
 ```eval_rst
