@@ -13,6 +13,7 @@ Contents:
    :maxdepth: 5
 
    _md/quick_ref.md
+   _md/block_ref.md
 
 
 
