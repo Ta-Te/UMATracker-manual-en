@@ -287,8 +287,8 @@
       - .. image:: img/quick/uma_filtergenerator_polyselexample.png
 ```
 
-前述で二値化を行ったアリの動画で`Rectangle selection`ブロックを用いた例を示す．
-前段階ではシャーレの縁が写っていたが，`Rectangle selection`ブロックを用いることでシャーレ内のみを抜き出すことに成功している．
+前述で二値化を行ったアリの動画で`Circular selection`ブロックを用いた例を示す．
+前段階ではシャーレの縁が写っていたが，`Circular selection`ブロックを用いることでシャーレ内のみを抜き出すことに成功している．
 
 ![txt](img/quick/uma_filtergenerator_excludeblock.png)
 ![txt](img/quick/uma_filtergenerator_excludeexample.png)
@@ -312,7 +312,7 @@
 Erosionは白色の領域を縮めるようなフィルタのことで，これを用いることで追跡物体よりも小さいノイズを除去することができる．
 ![txt](img/quick/uma_filtergenerator_erosionexample.png)
 
-前述の不要な領域の除去を行ったアリの動画で`Threshold`ブロックを用いた例を示す．
+前述の不要な領域の除去を行ったアリの動画で`Erosion`ブロックを用いた例を示す．
 
 ![txt](img/quick/uma_filtergenerator_noisereduction.png)
 
