@@ -172,7 +172,32 @@
 ```
 
 #### Generate Background
-メニューより`Background/Create Background`を選択すると，バックグラウンド生成画面が表示される．
+
+
+背景除去を行うには，メニューより`Background/Create Background`を選択しバックグラウンド生成ダイアログを表示する．
+
+![txt](img/quick/uma_filtergenerator_bgsubdialog.png)
+
+まず背景生成に使用するビデオの始点と終点を指定する．
+スライダーを動かして，背景生成に使用する動画の始点を選び，Set Minボタンをクリックする．
+すると，始点以降のスライダーバーの色が赤に変化する．
+同様にスライダーを動かして，背景生成に使用する動画の終点を選び，Set Maxボタンをクリックすると
+終点以前のスライダーバーの色が赤になる．
+スライダーバーが赤色の部分のビデオが背景生成に使用される．
+```eval_rst
+.. note:: 正しく背景生成を行うためには，動画の背景が静的（コントラストや位置が変化しない）であることが必要である．背景生成に使用するビデオの始点と終点を指定することで，背景が安定しない撮影開始時・終了時など背景生成に使用したくない部分を除くことが出来る．
+```
+
+つぎに解析に使うビデオのフレーム間隔をFrame deltaで指定する．
+
+以上を指定後Generateボタンを押すと背景生成が開始される．
+背景生成終了後，結果がダイアログ右側のビューに背景除去された結果が反映されるので，スライダーを動かして背景除去に成功しているか確認する．
+
+```eval_rst
+.. warning:: 背景生成に使用するフレーム数が多ければ安定して背景生成できるが，処理に時間が掛かる．このようなときは生成に使用するビデオの始点と終点，Frame Deltaを調整する．
+```
+
+![txt](img/quick/uma_filtergenerator_bgsubexample.png)
 
 #### Color Filtering
 カラーマーカーが付いている場合など追跡物体が特徴的な色を有している場合，その色を抽出するフィルタを作成することで追跡物体を抽出することができる．
@@ -202,7 +227,31 @@
 ```
 
 #### Convert to Gray Scale
+
+個体追跡したい物体の場所のみが白くなるフィルタを作成するためには，その前にカラー画像を各ピクセルが0 - 255の値を持つグレースケール画像に変換する必要がある．
+そこで`Filters`ツールチップに含まれる`BGRToGray`ブロックを用いて，カラー画像をグレースケール画像に変換する．
+
+背景除去を行った後のアリの動画で`BGRToGray`ブロックを用いた例を示す．
+![txt](img/quick/uma_filtergenerator_blockadded.png)
+![txt](img/quick/uma_filtergenerator_bgrtograyexample.png)
+
+```eval_rst
+.. warning:: 例では見た目に変化はないが，必須の作業なので二値化の前に必ずおこなうこと．
+```
+
 #### Binalize
+
+![txt](img/quick/uma_filtergenerator_grayscale.png)
+グレースケール画像は各ピクセルが0 - 255の値を持っており，0が黒をあらわし255に近い値であるほど白に近い値となっている．
+前述のグレースケール変換では画像の追跡したい固体の部分が明るく抜き出されているので，その部分のみを白く抜き出せば最初の目標の画像に到達できることがわかる．
+
+そこで，`Threshold`ブロックをもちいて二値化をおこなう．
+
+ブロックの右側の数値入力欄が閾値をあらわしており，
+
+![txt](img/quick/uma_filtergenerator_binalize.png)
+![txt](img/quick/uma_filtergenerator_binalizeexample.png)
+
 #### Exclude the Obstacle by the Region Selector
 #### Noise Reduction
 ![txt](img/quick/uma_filtergenerator_noisereduction.png)
