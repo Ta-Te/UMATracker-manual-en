@@ -82,9 +82,9 @@
 `Input`はソフトウェアに読み込ませた動画像のことを指しており，上述の『入力画面』に表示されている動画像のことである．
 
 そして，`Output`ブロックに接続されたブロックのデータが上述の『出力画面』に表示される．
+これらの`Input`ブロックと`Output`ブロックの間に各フィルタを意味するブロックを複数挟み込むことで画像フィルタを表現することが出来る．
 この例では`Input`ブロックが`Output`ブロックに直接接続されているので，`Input`ブロックのデータ，すなわち『入力画面』に表示された動画像が
-『出力画面』に表示される．
-`Input`ブロックと`Output`ブロックの間に各フィルタを意味するブロックを複数挟み込むことで画像フィルタを表現することが出来る．
+そのまま『出力画面』に表示される．
 
 #### Add Block
 キャンバス上のブロック群へブロックを追加するには，フィルタツールチップからブロックをドラック＆ドロップすればよい．
@@ -162,7 +162,9 @@
 
 ![txt](img/quick/uma_filtergenerator_filtermakingsequence.png)
 
-
+```eval_rst
+.. youtube:: https://www.youtube.com/watch?v=PEWX8cctaSQ
+```
 
 #### Open the Video File
 メニューより`Files/Open Video File`を選択，もしくはビデオファイルをウインドウにドラッグアンドドロップすることで解析に使用するビデオを読み込む．
@@ -198,6 +200,10 @@
 ```
 
 ![txt](img/quick/uma_filtergenerator_bgsubexample.png)
+
+```eval_rst
+.. youtube:: https://www.youtube.com/watch?v=za1jzU0K56k
+```
 
 #### Color Filtering
 カラーマーカーが付いている場合など追跡物体が特徴的な色を有している場合，その色を抽出するフィルタを作成することで追跡物体を抽出することができる．
@@ -239,25 +245,79 @@
 .. warning:: 例では見た目に変化はないが，必須の作業なので二値化の前に必ずおこなうこと．
 ```
 
-#### Binalize
+#### Binarize
 
 ![txt](img/quick/uma_filtergenerator_grayscale.png)
-グレースケール画像は各ピクセルが0 - 255の値を持っており，0が黒をあらわし255に近い値であるほど白に近い値となっている．
-前述のグレースケール変換では画像の追跡したい固体の部分が明るく抜き出されているので，その部分のみを白く抜き出せば最初の目標の画像に到達できることがわかる．
+グレースケール画像は各ピクセルが0 - 255の値を持っており，値0が黒をあらわし255に近い値であるほどそのピクセルは白に近い色となる．
+前述のグレースケール変換では画像の追跡したい固体の部分が明るく抜き出されているので，その部分のみを白く抜き出せば最初の目標の画像に到達できる．
 
 そこで，`Threshold`ブロックをもちいて二値化をおこなう．
+二値化とは，グレースケール画像を白と黒の2階調画像に変換することであり，ある閾値を定めて，各ピクセルの値がその閾値を上回っているとき255（白），そうでないときは0（黒）にそのピクセルの値を変換する画像フィルタである．
 
-ブロックの右側の数値入力欄が閾値をあらわしており，
+`Threshold`ブロックの右側の数値入力欄が閾値をあらわしている．
 
-![txt](img/quick/uma_filtergenerator_binalize.png)
-![txt](img/quick/uma_filtergenerator_binalizeexample.png)
+前述でグレースケール変換を行ったアリの動画で`Threshold`ブロックを用いた例を示す．
+
+![txt](img/quick/uma_filtergenerator_binarize.png)
+![txt](img/quick/uma_filtergenerator_binarizeexample.png)
 
 #### Exclude the Obstacle by the Region Selector
+
+解析に不要な領域が個体追跡の精度に悪影響を及ぼすことがある．
+そこで範囲選択をおこなうことで，解析に不要な領域を除去する必要がある．
+
+`UMATracker-FilterGenerator`は矩形による選択`Rectangle selection`ブロック・楕円による選択`Circular selection`ブロック・任意の4頂点での範囲選択`Poly Selection`ブロックを有している．
+
+```eval_rst
+.. list-table:: Selection/Exclusion Blocks
+    :header-rows: 1
+    :widths: 2, 1, 5
+
+    * - Block Example
+      - Type
+      - Description
+    * - .. image:: img/quick/uma_filtergenerator_rectsel.png
+      - 矩形
+      - .. image:: img/quick/uma_filtergenerator_rectselexample.png
+    * - .. image:: img/quick/uma_filtergenerator_circsel.png
+      - 楕円
+      - .. image:: img/quick/uma_filtergenerator_circselexample.png
+    * - .. image:: img/quick/uma_filtergenerator_polysel.png
+      - 4頂点
+      - .. image:: img/quick/uma_filtergenerator_polyselexample.png
+```
+
+前述で二値化を行ったアリの動画で`Rectangle selection`ブロックを用いた例を示す．
+前段階ではシャーレの縁が写っていたが，`Rectangle selection`ブロックを用いることでシャーレ内のみを抜き出すことに成功している．
+
+![txt](img/quick/uma_filtergenerator_excludeblock.png)
+![txt](img/quick/uma_filtergenerator_excludeexample.png)
+
+```eval_rst
+.. youtube:: https://www.youtube.com/watch?v=NRFRUSzR6xk
+```
+
+```eval_rst
+.. youtube:: https://www.youtube.com/watch?v=fqht_bxmx3s
+```
+
+```eval_rst
+.. note:: 各ブロックのチェックボックスをオフにすると，切り取られる領域が反転する．
+```
+
 #### Noise Reduction
+動画ファイルにはノイズが必ず含まれる．ノイズの原因は，観察者の移動などで発生する照度の微妙な変化・実験環境に含まれる微妙なチリ・動物の糞など様々である．これらのノイズを極力排除することで，精度良く個体追跡をおこなえる．
+
+最も簡単なノイズ除去は`Erosion`ブロックを使うことである．
+Erosionは白色の領域を縮めるようなフィルタのことで，これを用いることで追跡物体よりも小さいノイズを除去することができる．
+![txt](img/quick/uma_filtergenerator_erosionexample.png)
+
+前述の不要な領域の除去を行ったアリの動画で`Threshold`ブロックを用いた例を示す．
+
 ![txt](img/quick/uma_filtergenerator_noisereduction.png)
 
 #### Save Filter Data
 メニューより`Files/Save Filter Data`を選択することでフィルタデータ（拡張子`.filter`）が保存される．
 ```eval_rst
-.. warning:: Gray Scale変換・Binalizeを行っていない場合は個体追跡に失敗するので，保存前にGray Scale変換・Binalizeが行われていることを確認すること．
+.. warning:: Gray Scale変換・Binarizeを行っていない場合は個体追跡に失敗するので，保存前にGray Scale変換・Binarizeが行われていることを確認すること．
 ```
