@@ -27,7 +27,7 @@
 
 本Quick Start Guideでは個体追跡に絞って使用方法を解説する．
 
-## Workflow
+## Basic Workflow
 ![txt](img/quick/uma_summary_sequence.png)
 
 **UMATracker**による個体追跡は,
@@ -159,6 +159,13 @@
 4. ノイズ除去
 
 という手順をふむ必要がある．
+
+追跡物体が背景と十分なコントラスト差をもっているときはこの手順で十分個体追跡が可能だが，そうでない場合は前段階として
+
+1. 背景の除去
+2. 色選択による追跡物体の抽出
+
+のいずれかをおこなうことで精度よく個体追跡が出来るようになる．
 
 ![txt](img/quick/uma_filtergenerator_filtermakingsequence.png)
 
