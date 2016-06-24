@@ -111,6 +111,12 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#umatracker-tracking">1.4. UMATracker-Tracking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tracking-window">1.4.1. Tracking Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-the-video-and-its-filter-data">1.4.2. Load the Video and its Filter data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-the-parameter">1.4.3. Set the Parameter</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="block_ref.html">2. UMATracker-FilterGenerator Block Reference</a></li>
@@ -509,6 +515,54 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 <p class="last">Gray Scale変換・Binarizeを行っていない場合は個体追跡に失敗するので，保存前にGray Scale変換・Binarizeが行われていることを確認すること．</p>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="umatracker-tracking">
+<span id="umatracker-tracking"></span><h2>1.4. UMATracker-Tracking<a class="headerlink" href="#umatracker-tracking" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="tracking-window">
+<span id="tracking-window"></span><h3>1.4.1. Tracking Window<a class="headerlink" href="#tracking-window" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下に<strong>UMATracker-Tracking</strong>の画面各部の名称および説明を示す．</p>
+<p><img alt="txt" src="../_images/uma_tracking_mainwindow.png" /></p>
+<ol>
+<li><p class="first">個体追跡結果画面</p>
+<p>入力動画と個体追跡結果を表示する．</p>
+</li>
+<li><p class="first">個体追跡パラメタ設定画面</p>
+<p>個体数など，トラッキングで使用する値を変更する．設定可能なパラメタはトラッキングアルゴリズムより異なる．</p>
+</li>
+<li><p class="first">結果表示設定画面</p>
+<p>個体追跡結果の表示の詳細を設定する項目．</p>
+<ul>
+<li><p class="first">Radius</p>
+<p>結果画面に表示される個体位置を表す点の大きさを設定する．</p>
+</li>
+<li><p class="first">Line Width</p>
+<p>結果画面に表示される個体の移動した軌跡の太さを設定する．</p>
+</li>
+<li><p class="first"># of overlay</p>
+<p>前後何フレーム分の軌跡を結果画面に表示するかを設定する．</p>
+</li>
+</ul>
+</li>
+<li><p class="first">トラッキングアルゴリズム選択メニュー</p>
+<p><strong>UMATracker-Tracking</strong>には複数の個体追跡アルゴリズムが搭載されており，それをトラッキングアルゴリズム選択メニューから
+選択することができる．</p>
+</li>
+<li><p class="first">Filesメニュー</p>
+<p>動画・フィルタの読み込み，トラッキング結果の保存をおこなう．</p>
+</li>
+</ol>
+</div>
+<div class="section" id="load-the-video-and-its-filter-data">
+<span id="load-the-video-and-its-filter-data"></span><h3>1.4.2. Load the Video and its Filter data<a class="headerlink" href="#load-the-video-and-its-filter-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>はじめに解析対象の動画と前述の<strong>UMATracker-FilterGenerator</strong>で作成したフィルタデータをドラッグ&amp;ドロップで読み込む．
+<img alt="txt" src="../_images/uma_tracking_loadvideo.png" />
+<img alt="txt" src="../_images/uma_tracking_loadfilter.png" /></p>
+</div>
+<div class="section" id="set-the-parameter">
+<span id="set-the-parameter"></span><h3>1.4.3. Set the Parameter<a class="headerlink" href="#set-the-parameter" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>つぎに個体追跡に必要なパラメタを個体追跡パラメタ設定画面で設定する．</p>
+<p><img alt="txt" src="../_images/uma_tracking_setparameter.png" /></p>
 </div>
 </div>
 </div>
