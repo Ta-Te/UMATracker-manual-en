@@ -328,3 +328,61 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 ```eval_rst
 .. warning:: Gray Scale変換・Binarizeを行っていない場合は個体追跡に失敗するので，保存前にGray Scale変換・Binarizeが行われていることを確認すること．
 ```
+
+## UMATracker-Tracking
+
+### Tracking Window
+
+以下に**UMATracker-Tracking**の画面各部の名称および説明を示す．
+
+![txt](img/quick/uma_tracking_mainwindow.png)
+
+1. 個体追跡結果画面
+    
+    入力動画と個体追跡結果を表示する．
+
+2. 個体追跡パラメタ設定画面
+    
+    個体数など，トラッキングで使用する値を変更する．設定可能なパラメタはトラッキングアルゴリズムより異なる．
+
+3. 結果表示設定画面
+    
+    個体追跡結果の表示の詳細を設定する項目．
+    * Radius
+        
+        結果画面に表示される個体位置を表す点の大きさを設定する．
+    
+    * Line Width
+        
+        結果画面に表示される個体の移動した軌跡の太さを設定する．
+    
+    * \# of overlay
+        
+        前後何フレーム分の軌跡を結果画面に表示するかを設定する．
+
+4. トラッキングアルゴリズム選択メニュー
+    
+    **UMATracker-Tracking**には複数の個体追跡アルゴリズムが搭載されており，それをトラッキングアルゴリズム選択メニューから
+    選択することができる．
+
+5. Filesメニュー
+    
+    動画・フィルタの読み込み，トラッキング結果の保存をおこなう．
+
+### Load the Video and its Filter data
+はじめに解析対象の動画と前述の**UMATracker-FilterGenerator**で作成したフィルタデータをドラッグ&ドロップで読み込む．
+![txt](img/quick/uma_tracking_loadvideo.png)
+![txt](img/quick/uma_tracking_loadfilter.png)
+
+### Set the Parameter
+つぎに個体追跡に必要なパラメタを個体追跡パラメタ設定画面で設定する．
+
+![txt](img/quick/uma_tracking_setparameter.png)
+
+
+
+
+
+
+
+
