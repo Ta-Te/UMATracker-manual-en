@@ -114,7 +114,21 @@
 <li class="toctree-l2"><a class="reference internal" href="#umatracker-tracking">1.4. UMATracker-Tracking</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tracking-window">1.4.1. Tracking Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#load-the-video-and-its-filter-data">1.4.2. Load the Video and its Filter data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-the-parameter">1.4.3. Set the Parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-tracking-parameter">1.4.3. Set Tracking Parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#execute-object-tracking">1.4.4. Execute Object Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fix-mis-detection">1.4.5. Fix Mis-Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-tracking-data">1.4.6. Save Tracking Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#umatracker-trackingcorrector">1.5. UMATracker-TrackingCorrector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trackingcorrector-window">1.5.1. TrackingCorrector Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-correction">1.5.2. Data Correction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#zoom-up">1.5.2.1. Zoom Up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-the-position-aberration">1.5.2.2. Fix the Position Aberration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#correct-the-data-swapping">1.5.2.3. Correct the Data Swapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-data">1.5.2.4. Save Data</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -528,7 +542,26 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 <p>入力動画と個体追跡結果を表示する．</p>
 </li>
 <li><p class="first">個体追跡パラメタ設定画面</p>
-<p>個体数など，トラッキングで使用する値を変更する．設定可能なパラメタはトラッキングアルゴリズムより異なる．</p>
+<p>個体数など，トラッキングで使用する値を変更する．設定可能なパラメタはトラッキングアルゴリズムより異なる．
+ここではデフォルトで使用されるGroupTracker GMMの設定画面を例に説明する．</p>
+<p><img alt="txt" src="../_images/uma_tracking_settings.png" /></p>
+<ol>
+<li><p class="first">#of objects</p>
+<p>追跡物体の個数を入力する．</p>
+</li>
+<li><p class="first">#of k-means</p>
+<p>事前クラスタリングにおけるクラスタ数．通常は１の追跡物体数と同じ値を指定する．</p>
+</li>
+<li><p class="first">Likelihood diff. threshold</p>
+<p>前フレームでの個体追跡結果との類似度の閾値を表す．閾値をこえた場合はそれまで推定に用いてきた特徴情報を捨てて，新たに特徴情報を取得する．</p>
+</li>
+<li><p class="first">Restart from this frame</p>
+<p>追跡ミスを修正したあとに押すボタン．ボタンが押すと，修正を反映して現在のビデオ再生位置から個体追跡をやり直すことができる．</p>
+</li>
+<li><p class="first">Set/Reset</p>
+<p>上記で設定したパラメタを適用して新たに個体追跡を開始するボタン．パラメタ変更後や個体追跡をやり直したいときに押すと，ビデオが開始位置に巻き戻される．これまでの追跡結果は破棄される．</p>
+</li>
+</ol>
 </li>
 <li><p class="first">結果表示設定画面</p>
 <p>個体追跡結果の表示の詳細を設定する項目．</p>
@@ -555,14 +588,114 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 </div>
 <div class="section" id="load-the-video-and-its-filter-data">
 <span id="load-the-video-and-its-filter-data"></span><h3>1.4.2. Load the Video and its Filter data<a class="headerlink" href="#load-the-video-and-its-filter-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>はじめに解析対象の動画と前述の<strong>UMATracker-FilterGenerator</strong>で作成したフィルタデータをドラッグ&amp;ドロップで読み込む．
-<img alt="txt" src="../_images/uma_tracking_loadvideo.png" />
-<img alt="txt" src="../_images/uma_tracking_loadfilter.png" /></p>
+<p>個体追跡を行うには，はじめに解析対象の動画と前述の<strong>UMATracker-FilterGenerator</strong>で作成したフィルタデータをドラッグ&amp;ドロップで読み込む．</p>
+<p><img alt="txt" src="../_images/uma_tracking_loaddata.png" /></p>
 </div>
-<div class="section" id="set-the-parameter">
-<span id="set-the-parameter"></span><h3>1.4.3. Set the Parameter<a class="headerlink" href="#set-the-parameter" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>つぎに個体追跡に必要なパラメタを個体追跡パラメタ設定画面で設定する．</p>
+<div class="section" id="set-tracking-parameter">
+<span id="set-tracking-parameter"></span><h3>1.4.3. Set Tracking Parameter<a class="headerlink" href="#set-tracking-parameter" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><img alt="txt" src="../_images/uma_tracking_setparameter.png" /></p>
+<p>つぎに個体追跡に必要なパラメタを個体追跡パラメタ設定画面で設定する．
+デフォルトで使用されるGroupTracker GMMでは追跡物体数(<code class="docutils literal"><span class="pre">#</span> <span class="pre">of</span> <span class="pre">objects</span></code>)を指定し，<code class="docutils literal"><span class="pre">Set/Reset</span></code>ボタンを押すと，個体追跡結果画面に個体位置を示す円と個体番号が表示される．</p>
+</div>
+<div class="section" id="execute-object-tracking">
+<span id="execute-object-tracking"></span><h3>1.4.4. Execute Object Tracking<a class="headerlink" href="#execute-object-tracking" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>初期状態で正しく追跡物体位置が推定されているのを確認したあとビデオの再生を開始すると，ビデオの再生に併せて個体追跡が実行される．</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Run/Run Object Trackingメニューにより，ビデオの再生なしに個体追跡をおこなうこともできる．</p>
+</div>
+</div>
+<div class="section" id="fix-mis-detection">
+<span id="fix-mis-detection"></span><h3>1.4.5. Fix Mis-Detection<a class="headerlink" href="#fix-mis-detection" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ノイズなどの影響により，正しく個体追跡が行われなかったりエラーメッセージが出たりして個体追跡が破綻してしまうことがある．そのようなときは，破綻がおこったビデオ再生位置までビデオを巻き戻し，個体追跡結果画面の追跡結果をドラッグアンドドロップで修正する．そして<code class="docutils literal"><span class="pre">Restart</span> <span class="pre">from</span> <span class="pre">this</span> <span class="pre">frame</span></code>ボタンを押すことで修正後の状態から個体追跡を再開することができる．</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">追跡個体の入れ替わりや追跡結果のずれなど個体追跡が破綻していない場合は，次節のTrackingCorrectrで修正可能なので個体追跡中に修正を行う必要はない．</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">全ての個体追跡の破綻に対応することができるわけではない．そのような場合は，前節で作成したフィルタを修正する必要がある．</p>
+</div>
+</div>
+<div class="section" id="save-tracking-data">
+<span id="save-tracking-data"></span><h3>1.4.6. Save Tracking Data<a class="headerlink" href="#save-tracking-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">Files/Save</span> <span class="pre">Data</span></code>メニューより，個体追跡によって得られた座標データを保存することができる．</p>
+<ol>
+<li><p class="first">ビデオの情報</p>
+<p>FPSなど，読み込まれたビデオの詳細情報がテキストファイルとして保存される．</p>
+</li>
+<li><p class="first">個体追跡結果</p>
+<p>保存される追跡結果は個体追跡アルゴリズムに依存する．GroupTracker GMMでは個体追跡結果のデータが，ビデオフレーム番号を行・各個体の座標を列に持つCSVとして保存される．追跡結果表示画面に表示されている個体番号の順に各個体の座標が並ぶようになっている．
+<img alt="txt" src="../_images/uma_tracking_outputcsv.png" /></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="umatracker-trackingcorrector">
+<span id="umatracker-trackingcorrector"></span><h2>1.5. UMATracker-TrackingCorrector<a class="headerlink" href="#umatracker-trackingcorrector" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>個体追跡において多くの場合で追跡ミスが起こるため，正しい追跡結果を得るためには追跡ミスの修正行程が必要になる．<strong>UMATracker-TrackingCorrector</strong>を使うことで，追跡ミスの修正を簡単に行うことができる．</p>
+<div class="section" id="trackingcorrector-window">
+<span id="trackingcorrector-window"></span><h3>1.5.1. TrackingCorrector Window<a class="headerlink" href="#trackingcorrector-window" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下に<strong>UMATracker-TrackingCorrector</strong>の画面各部の名称および説明を示す．</p>
+<p><img alt="txt" src="../_images/uma_trackingcorrector_mainwindow.png" /></p>
+<ol>
+<li><p class="first">個体追跡結果表示画面</p>
+<p>個体追跡結果を表示する画面．結果表示画面上で範囲選択することで，範囲選択された部分が右側の追跡結果画面に拡大表示される．</p>
+</li>
+<li><p class="first">追跡結果拡大画面
+結果表示画面において範囲選択された部分が拡大表示される．追跡結果を表す円を右クリックすると円が四角形に変化し，その個体の追跡データが選択状態になる．2個体の追跡データを選択状態にすると<code class="docutils literal"><span class="pre">Swap</span></code>ボタンが現れる．<code class="docutils literal"><span class="pre">Swap</span></code>ボタンをクリックすると，現在のビデオ再生位置以降の2つの個体の追跡データが入れ替わる．</p>
+</li>
+<li><p class="first">結果表示設定画面</p>
+<p>個体追跡結果の表示の詳細を設定する項目．</p>
+<ul>
+<li><p class="first">Path Length</p>
+<p>前後何フレーム分の軌跡を結果画面に表示するかを設定する．</p>
+</li>
+<li><p class="first">Radius</p>
+<p>結果画面に表示される個体位置を表す点の大きさを設定する．</p>
+</li>
+<li><p class="first">Mark Interval</p>
+<p>目印の間隔の大きさを設定する．
+各個体の追跡結果の軌跡に対して，ここで指定された間隔毎に黒点がうたれる．</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Change the Order of Individual Numbers</p>
+<p>各個体に割り当てられている番号を入れ替えるための番号．
+このメニューをクリックするとダイアログが表示され，入れ替えたい個体番号を指定し<code class="docutils literal"><span class="pre">Swap</span></code>ボタンを押すと個体番号が入れ替わる．
+<img alt="txt" src="../_images/uma_trackingcorrector_swapdatanum.png" /></p>
+</li>
+</ol>
+</div>
+<div class="section" id="data-correction">
+<span id="data-correction"></span><h3>1.5.2. Data Correction<a class="headerlink" href="#data-correction" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>つぎに実際の修正工程について説明する．
+まずは，解析対象のビデオと前述の<strong>UMATracker-Tracking</strong>によって得られた追跡データを
+ドラッグアンドドロップで<strong>UMATracker-TrackingCorrector</strong>に読み込ませる．
+つぎに，軌跡の変化を把握しやすくするため<code class="docutils literal"><span class="pre">Path</span> <span class="pre">Length</span></code>など表示の調整項目を調整し，
+再生しながら目視で追跡ミスを探す．</p>
+<div class="section" id="zoom-up">
+<span id="zoom-up"></span><h4>1.5.2.1. Zoom Up<a class="headerlink" href="#zoom-up" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>拡大機能を用いることで，追跡ミスが起きていそうなところを詳細に見ることができる．
+左側の結果表示画面でドラッグアンドドロップにより範囲選択を行うと，右側の拡大画面に範囲選択した領域が拡大表示される．</p>
+<p><img alt="txt" src="../_images/uma_trackingcorrector_zoom.png" /></p>
+</div>
+<div class="section" id="fix-the-position-aberration">
+<span id="fix-the-position-aberration"></span><h4>1.5.2.2. Fix the Position Aberration<a class="headerlink" href="#fix-the-position-aberration" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>追跡ミスを見つけたら，右側の拡大画面でマーカーをドラッグアンドドロップすることで修正することができる．</p>
+<p><img alt="txt" src="../_images/uma_trackingcorrector_fixdata.png" /></p>
+</div>
+<div class="section" id="correct-the-data-swapping">
+<span id="correct-the-data-swapping"></span><h4>1.5.2.3. Correct the Data Swapping<a class="headerlink" href="#correct-the-data-swapping" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>入れ替わりを見つけたら，入れ替わりが起こったビデオの再生位置を探す．
+入れ替わりが起こった再生位置を見つけたら，右側の拡大画面において入れ替わった2個体のマーカーをそれぞれ右クリックで選択する．
+すると<code class="docutils literal"><span class="pre">Swap</span></code>メニューが表示されるので，それをクリックすると入れ替わりが解消される．</p>
+<p><img alt="txt" src="../_images/uma_trackingcorrector_selectandswap.png" /></p>
+</div>
+<div class="section" id="save-data">
+<span id="save-data"></span><h4>1.5.2.4. Save Data<a class="headerlink" href="#save-data" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>修正が完了したら，<code class="docutils literal"><span class="pre">Files/Save</span> <span class="pre">Data</span></code>メニューを選択して修正結果を保存する．</p>
+</div>
 </div>
 </div>
 </div>
