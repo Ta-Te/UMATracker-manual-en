@@ -546,6 +546,21 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 2. オブジェクトリストテーブル
     
     オブジェクトの固有名・色・種類を設定する画面．
+    
+    * Name列
+    	
+        行に対応するオブジェクトの名称を表示する．
+        この列の要素をダブルクリックするとプルダウンメニューが表示され，ダブルクリックした要素の行に対応するオブジェクトの名称を変更できる．
+    
+    * Color列
+    	
+        行に対応するオブジェクトの表示色を表示する．
+        この列の要素をダブルクリックするとプルダウンメニューが表示され，ダブルクリックした要素の行に対応するオブジェクトの表示色を変更できる．
+    
+    * Type列
+    	
+        行に対応するオブジェクトのタイプを表示する．
+        この列の要素をダブルクリックするとプルダウンメニューが表示され，ダブルクリックした要素の行に対応するオブジェクトの種類を変更できる．
 
 3. オブジェクト追加/削除/優先順位変更ボタン
     
@@ -561,13 +576,64 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
     結果表示画面に表示された各個体を表す円マーカーの半径を設定する入力ボックス．
     この値は個体間インタラクションを算出するときに用いられる（後述）．
 
-### Data Analysis
-
-#### Load the Video and its Tracking Results
+### Load the Video and Tracking Result
 
 解析に使用するビデオとその個体追跡結果データを，メインウインドウにドラックアンドドロップして読み込ませる．
 
-#### Add and Select Object
+### Add and Select Object
 
-次に，画面右下の+ Buttonを押して解析に使用するオブジェクトを追加する．
-デフォルトではCirc.オブジェクトが追加される．
+次に，解析に使用するオブジェクトを追加する．
+画面右下の+ Buttonを押すとオブジェクトリストテーブルにオブジェクトが追加される．
+
+オブジェクトの種類は，Region of Interest Object TypeとDistance Calculation Object Typeの2つのグループに分けることができる．
+以下の通りRegion of Interest Object Typeのオブジェクトは3種類，Distance Calculation Object Typeのオブジェクトは2種類存在する．
+
+1. Region of Interest Object Type
+	
+	* Rectangular Object
+	* Ellipse Object
+	* Polygon Object
+
+2. Disntance Calculation Object Type
+	
+	* Point Object
+	* Line Object
+
+オブジェクトリストテーブルに表示されたオブジェクト行のType列をダブルクリックすると，プルダウンメニューが表示されてオブジェクトを変更することが出来る．
+![txt](img/quick/uma_area51_selectobjecttype.png)
+
+### Data Analysis Settings
+
+Region of Interests Object Typeのオブジェクトを用いたRegion of Interests Analysisと，Distance Calculation Object Typeのオブジェクトを用いたDistance from the Point/Line Analysisの二種類の解析を行うことが出来る．以下，それぞれの解析手法に関して操作手順を説明する．
+
+#### Region of Interests Analysis
+
+
+
+#### Distance from the Point/Line Analysis
+
+四角マークをドラッグアンドドロップすることで，各オブジェクトの位置や
+
+`Run/Calculate`メニューを選択することで，配置されたそれぞれのオブジェクトから各個体への距離を算出することができる．
+各オブジェクトごとにウィンドウが表示され，各オブジェクトに対して算出されたデータがLine Plotとして表示される．
+
+1. Point Object
+	
+    このオブジェクトを選択すると，個体追跡結果/オブジェクト表示画面に四角の点が表示される．
+    四角の点をドラッグアンドドロップすることで，このオブジェクトの位置を変更できる．
+    
+    `Run/Calculate`メニューを選択すると，このオブジェクトと各個体間の距離が算出される．
+
+2. Line Object
+	
+    このオブジェクトを選択すると，個体追跡結果/オブジェクト表示画面に直線が表示される．
+    オブジェクトの両端に表示された端点をドラッグアンドドロップすることで直線の端の位置を変更できる．
+    また，表示された直線をドラッグアンドドロップすることで直線全体の位置を変更できる．
+    
+    `Run/Calculate`メニューを選択すると，配置されたLine Objectから各個体への最短距離が算出される．
+    2次元空間上の座標を(x, y)であらわし，そこに配置されたLine Objectをあらわす直線の式をax + by + c = 0であるとする．このとき，各固体の位置(x_i, y_i)から直線への最短距離は|ax_i + by_i +c|/\sqrt{a^2 + b^2}となる．
+
+解析結果は横軸がビデオフレーム番号，縦軸がオブジェクトからの距離のLine Plotで表示される．
+解析結果を表示するウインドウの名称は，解析対象オブジェクトの名称が表示される．
+
+![txt](img/quick/uma_area51_distancewindow.png)
