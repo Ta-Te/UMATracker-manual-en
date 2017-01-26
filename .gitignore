@@ -1,6 +1,7 @@
 .buildinfo
 .doctrees/
 objects.inv
-Thumbs.db
+*.db
 *.pyc
-~
+*~
+html/_images/Thumbs.db
