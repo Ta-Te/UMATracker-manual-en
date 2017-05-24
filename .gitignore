@@ -5,3 +5,7 @@ objects.inv
 *.pyc
 *~
 html/_images/Thumbs.db
+html/
+_build/
+__pycache__/
+
