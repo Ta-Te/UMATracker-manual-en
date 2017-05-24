@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1. UMATracker Quick Start Guide &mdash; UMATracker 1.0 ドキュメント</title>
+  <title>1. UMATracker Quick Start Guide &mdash; UMATracker User&#39;s Guide (English) 1.0 ドキュメント</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="UMATracker 1.0 ドキュメント" href="../index.html"/>
+    <link rel="top" title="UMATracker User&#39;s Guide (English) 1.0 ドキュメント" href="../index.html"/>
         <link rel="next" title="2. UMATracker-FilterGenerator Block Reference" href="block_ref.html"/>
         <link rel="prev" title="Welcome to UMATracker’s documentation!" href="../index.html"/> 
 
@@ -50,7 +50,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> UMATracker
+            <a href="../index.html" class="icon icon-home"> UMATracker User's Guide (English)
           
 
           
@@ -114,7 +114,33 @@
 <li class="toctree-l2"><a class="reference internal" href="#umatracker-tracking">1.4. UMATracker-Tracking</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tracking-window">1.4.1. Tracking Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#load-the-video-and-its-filter-data">1.4.2. Load the Video and its Filter data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-the-parameter">1.4.3. Set the Parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-tracking-parameter">1.4.3. Set Tracking Parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#execute-object-tracking">1.4.4. Execute Object Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fix-mis-detection">1.4.5. Fix Mis-Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-tracking-data">1.4.6. Save Tracking Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#umatracker-trackingcorrector">1.5. UMATracker-TrackingCorrector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trackingcorrector-window">1.5.1. TrackingCorrector Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-correction">1.5.2. Data Correction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#zoom-up">1.5.2.1. Zoom Up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fix-the-position-aberration">1.5.2.2. Fix the Position Aberration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#correct-the-data-swapping">1.5.2.3. Correct the Data Swapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-data">1.5.2.4. Save Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#umatracker-area51">1.6. UMATracker-Area51</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#area51-window">1.6.1. Area51 Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-the-video-and-tracking-result">1.6.2. Load the Video and Tracking Result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-and-select-object">1.6.3. Add and Select Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-analysis">1.6.4. Data Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#distance-from-a-point-line-analysis">1.6.4.1. Distance from a Point/Line Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#region-of-interests-analysis">1.6.4.2. Region of Interests Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#save-data">1.6.5. Save Data</a></li>
 </ul>
 </li>
 </ul>
@@ -133,7 +159,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">UMATracker</a>
+        <a href="../index.html">UMATracker User's Guide (English)</a>
       </nav>
 
 
@@ -168,124 +194,117 @@
 <span id="umatracker-quick-start-guide"></span><h1>1. UMATracker Quick Start Guide<a class="headerlink" href="#umatracker-quick-start-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="summary">
 <span id="summary"></span><h2>1.1. Summary<a class="headerlink" href="#summary" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><strong>UMATracker</strong>は個体追跡，およびその結果の解析を提供するソフトウェア群である．</p>
-<p><strong>UMATracker</strong>は,</p>
+<p><strong>UMATracker</strong> is the animal tracking software.</p>
+<p><strong>UMATracker</strong> consists of</p>
 <ul class="simple">
 <li><strong>UMATracker-FilterGenerator</strong></li>
 <li><strong>UMATracker-Tracking</strong></li>
 <li><strong>UMATracker-TrackingCorrector</strong></li>
 <li><strong>UMATracker-Area51</strong></li>
 </ul>
-<p>という4つのソフトウェアに別れており，各ソフトウェアを組み合わせることで動画の前処理・個体追跡・結果の修正・結果の解析を行うことが出来る．</p>
+<p>It is possible to perform the video pre-processing, the individual animal tracking, the result correction and the analysis of tracking results.</p>
 <div class="section" id="umatracker-can-do">
 <span id="umatracker-can-do"></span><h3>1.1.1. UMATracker Can Do<a class="headerlink" href="#umatracker-can-do" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li>ブロックの組み合わせによる解析動画の下処理（<strong>UMATracker-FilterGenerator</strong>）．</li>
-<li>追跡対象の個体数が常に一定なビデオを使った個体追跡（<strong>UMATracker-Tracking</strong>）．</li>
-<li>追跡対象の骨格・形状・向きの推定（<strong>UMATracker-Tracking</strong>）．</li>
-<li>個体追跡結果の修正（<strong>UMATracker-TrackingCorrector</strong>）．</li>
-<li>Region-Of-Interest・個体間インタラクションなど，追跡結果の解析（<strong>UMATracker-Area51</strong>）．</li>
+<li>Video pre-processing by visual programming. (<strong>UMATracker-FilterGenerator</strong>)</li>
+<li>Individual animal tracking that number of individuals is constant. (<strong>UMATracker-Tracking</strong>)</li>
+<li>Skeleton, shape and orientation estimation. (<strong>UMATracker-Tracking</strong>)</li>
+<li>Tracking result correction. (<strong>UMATracker-TrackingCorrector</strong>)</li>
+<li>Tracking result analysis such as Region-Of-Interest, inter-individual interaction, etc. (<strong>UMATracker-Area51</strong>)</li>
 </ul>
 </div>
 <div class="section" id="umatracker-cannot-do-currently">
 <span id="umatracker-cannot-do-currently"></span><h3>1.1.2. UMATracker Cannot Do (Currently)<a class="headerlink" href="#umatracker-cannot-do-currently" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
-<li>追跡対象の個体数が増減するビデオをつかった個体追跡．</li>
-<li><strong>UMATracker-FilterGenerator</strong>による前処理によって追跡対象を抽出できない場合の個体追跡．</li>
+<li>Individual animal tracking that number of individuals increase or decrease while tracking.</li>
+<li>Individual animal tracking that you can not extract individuals by video pre-processing with <strong>UMATracker-FilterGenerator</strong>.</li>
 </ul>
-<div class="admonition note">
-<p class="first admonition-title">注釈</p>
-<p class="last">現状出来ないことに関しても，プラグインを作成・使用することで対応可能となっている．本件に関してはプラグイン作成マニュアルで別途触れる．</p>
-</div>
-<p>本Quick Start Guideでは個体追跡に絞って使用方法を解説する．</p>
+<p>In this Quick Start Guide, we explain how to use the individual animal tracking and its analysis.</p>
 </div>
 </div>
 <div class="section" id="basic-workflow">
 <span id="basic-workflow"></span><h2>1.2. Basic Workflow<a class="headerlink" href="#basic-workflow" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><img alt="txt" src="../_images/uma_summary_sequence.png" /></p>
-<p><strong>UMATracker</strong>による個体追跡は,</p>
+<p>Individual animal tracking by <strong>UMATracker</strong> can do by the following workflow.</p>
 <ol class="simple">
-<li><strong>UMATracker-FilterGenerator</strong>で動画の下処理のためのフィルタを作成し，</li>
-<li><strong>UMATracker-Tracking</strong>において<strong>UMATracker-FilterGenerator</strong>で作成したフィルタを用いて個体追跡を行い，</li>
-<li><strong>UMATracker-TrackingCorrector</strong>を使って，<strong>UMATracker-Tracking</strong>で得られた個体追跡結果を修正し，</li>
-<li><strong>UMATracker-Area51</strong>をもちいて追跡結果の解析を行う</li>
+<li><strong>UMATracker-FilterGenerator</strong>: Create a filter for the video pre-processing.</li>
+<li><strong>UMATracker-Tracking</strong>: Perform individual tracking using a filter that you created in the <strong>UMATracker-FilterGenerator</strong>.</li>
+<li><strong>UMATracker-TrackingCorrector</strong> Correct the individual tracking results obtained with <strong>UMATracker-Tracking</strong>.</li>
+<li><strong>UMATracker-Area51</strong> Analyse the tracking result.</li>
 </ol>
-<p>という流れになっている．</p>
 </div>
 <div class="section" id="umatracker-filtergenerator">
 <span id="umatracker-filtergenerator"></span><h2>1.3. UMATracker-FilterGenerator<a class="headerlink" href="#umatracker-filtergenerator" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>個体追跡を行いたい動画に対して前処理として画像フィルタをかけて個体の位置を抽出することで，個体追跡の精度を高めることが出来る．
-そこでまず<strong>UMATracker-FilterGenerator</strong>を使用し，ブロックを組み合わせることで画像フィルタを作成する．</p>
+<p>It is possible to improve the accuracy of the individual tracking by creating the video pre-processing filter.
+At first, use <strong>UMATracker-FilterGenerator</strong> to create an image filter by visual programming.</p>
 <div class="section" id="filtergenerator-window">
 <span id="filtergenerator-window"></span><h3>1.3.1. FilterGenerator Window<a class="headerlink" href="#filtergenerator-window" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>以下に<strong>UMATracker-FilterGenerator</strong>の画面各部の名称および説明を示す．
+<p>The following shows the name and description of each part of the screen <strong>UMATracker-FilterGenerator</strong>.
 <img alt="txt" src="../_images/uma_filtergenerator_mainwindow.png" /></p>
 <ol>
-<li><p class="first">フィルタツールチップ</p>
-<p>利用出来るブロックの一覧が表示されるツールチップ．入力画像を変化させる画像フィルタが各ブロックに割り当てらており，
-ブロックを組み合わせることで個体を抽出するような画像フィルタを作成する．</p>
+<li><p class="first">Filter tool tip</p>
+<p>The tool-tip which lists available blocks.
+We can place a block on Canvas by drag-and-drop.</p>
 </li>
-<li><p class="first">フィルタブロック</p>
-<p>このブロックをドラッグ・アンド・ドロップし，ブロックをつなぎ合わせることで個体を抽出する画像フィルタを作成する．</p>
+<li><p class="first">Filter block</p>
+<p>Image filter is assigned to each block. The union of blocks represents the image filter.</p>
 </li>
-<li><p class="first">キャンバス</p>
-<p>フィルタブロックを配置し，フィルタ群を作成する場所．</p>
+<li><p class="first">Canvas</p>
+<p>The filter blocks are placed. We can create the image filter as desired by joining blocks on here.</p>
 </li>
-<li><p class="first">入力画面</p>
-<p>入力動画が表示される．</p>
+<li><p class="first">Input screen</p>
+<p>Input video image is displayed.</p>
 </li>
-<li><p class="first">出力画面</p>
-<p>入力した動画に対してキャンバスに設置したフィルタを適応した結果が表示される．</p>
+<li><p class="first">Output screen</p>
+<p>The result image of adaptation of the filter represented on Canvas is displayed.</p>
 </li>
-<li><p class="first">Background生成メニュー</p>
-<p>入力動画の背景を抽出し，除去する．</p>
+<li><p class="first">Background generation menu</p>
+<p>Extract the background image from the input video.</p>
 </li>
 </ol>
 </div>
 <div class="section" id="filter-block-operation">
 <span id="filter-block-operation"></span><h3>1.3.2. Filter Block Operation<a class="headerlink" href="#filter-block-operation" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>上述のキャンバス上でブロックを組み合わせることで，画像フィルタを作成する．
-本節ではブロックの操作方法について説明する．</p>
+<p>Now we create the image filter by combining the block on Canvas.
+In this section, we explain how to operate the block.</p>
 <div class="section" id="initial-block-state">
 <span id="initial-block-state"></span><h4>1.3.2.1. Initial Block State<a class="headerlink" href="#initial-block-state" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p><img alt="txt" src="../_images/uma_filtergenerator_initblock.png" /></p>
-<p>起動時には<code class="docutils literal"><span class="pre">Output</span></code>ブロックと<code class="docutils literal"><span class="pre">Input</span></code>ブロックのみがキャンバス上に表示される．
-<code class="docutils literal"><span class="pre">Input</span></code>はソフトウェアに読み込ませた動画像のことを指しており，上述の『入力画面』に表示されている動画像のことである．</p>
-<p>そして，<code class="docutils literal"><span class="pre">Output</span></code>ブロックに接続されたブロックのデータが上述の『出力画面』に表示される．
-これらの<code class="docutils literal"><span class="pre">Input</span></code>ブロックと<code class="docutils literal"><span class="pre">Output</span></code>ブロックの間に各フィルタを意味するブロックを複数挟み込むことで画像フィルタを表現することが出来る．
-この例では<code class="docutils literal"><span class="pre">Input</span></code>ブロックが<code class="docutils literal"><span class="pre">Output</span></code>ブロックに直接接続されているので，<code class="docutils literal"><span class="pre">Input</span></code>ブロックのデータ，すなわち『入力画面』に表示された動画像が
-そのまま『出力画面』に表示される．</p>
+<p>At the time of start-up, only <code class="docutils literal"><span class="pre">Output</span></code> block and <code class="docutils literal"><span class="pre">Input</span></code> is displayed on Canvas.
+<code class="docutils literal"><span class="pre">Input</span></code> points to the input image displayed.</p>
+<p>The data of the connected to <code class="docutils literal"><span class="pre">Output</span></code> block is displayed in the &#8220;Output screen&#8221; described above.
+The blocks sandwiched between <code class="docutils literal"><span class="pre">Input</span></code> and <code class="docutils literal"><span class="pre">Output</span></code> represents the image filter.
+In this example, since <code class="docutils literal"><span class="pre">Input</span></code> block is connected directly to the <code class="docutils literal"><span class="pre">Output</span></code> block, Output screen shows the image which is displayed on Input screen.</p>
 </div>
 <div class="section" id="add-block">
 <span id="add-block"></span><h4>1.3.2.2. Add Block<a class="headerlink" href="#add-block" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>キャンバス上のブロック群へブロックを追加するには，フィルタツールチップからブロックをドラック＆ドロップすればよい．
+<p>To insert a block into the block group on Canvas, drag-and-drop it from the filter tool tip to the block group.
 <img alt="txt" src="../_images/uma_filtergenerator_blockadding.png" />
 <img alt="txt" src="../_images/uma_filtergenerator_blockadded.png" /></p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">ドラッグ＆ドロップではなく，フィルタツールチップ上でフォーカス中に右クリックすることでもフィルタを追加することができる．</p>
+<p class="last">It is possible to insert a block by right-clicking while focusing on the filter tool chip.</p>
 </div>
-<p>たとえばフィルタツールチップ<code class="docutils literal"><span class="pre">Filters</span></code>内の<code class="docutils literal"><span class="pre">BGRToGray</span></code>を追加すると，『出力画面』が『入力画面』のグレースケールへ変化する．
-このことから<code class="docutils literal"><span class="pre">BGRToGray</span></code>がグレースケールフィルタを意味していることがわかる．</p>
+<p>For example, if you insert a <code class="docutils literal"><span class="pre">BGRToGray</span></code> in the filter tool chip <code class="docutils literal"><span class="pre">Filters</span></code>, &#8220;output screen&#8221; is changed to gray scale of &#8220;input screen&#8221;.
+This means <code class="docutils literal"><span class="pre">BGRToGray</span></code> is the gray-scale filter.</p>
 <p><img alt="txt" src="../_images/uma_filtergenerator_dataflow.png" /></p>
-<p>このとき入出力は，</p>
+<p>At this time,</p>
 <ol class="simple">
-<li>『入力画面』に表示された動画像が<code class="docutils literal"><span class="pre">Input</span></code>ブロックを通して，</li>
-<li><code class="docutils literal"><span class="pre">BGRToGray</span></code>ブロックに入力される．このブロックが入力されたデータをグレースケール動画像へ変換し，</li>
-<li>変換後の動画像が<code class="docutils literal"><span class="pre">Output</span></code>ブロックに入力される．</li>
-<li>そして，<code class="docutils literal"><span class="pre">Output</span></code>ブロックに入力された動画像が『出力画面』に反映される．</li>
+<li><code class="docutils literal"><span class="pre">Input</span></code> block passes the image which is displayed on Input screen to <code class="docutils literal"><span class="pre">BGRToGray</span></code> block.</li>
+<li><code class="docutils literal"><span class="pre">BGRToGray</span></code> block converts the image passed from <code class="docutils literal"><span class="pre">Input</span></code> block and passes the processed image to <code class="docutils literal"><span class="pre">Output</span></code> block.</li>
+<li><code class="docutils literal"><span class="pre">Output</span></code> block receives the image from <code class="docutils literal"><span class="pre">BGRToGray</span></code> block.</li>
+<li>Then, the image which is received by <code class="docutils literal"><span class="pre">Output</span></code> block is displayed on Output screen.</li>
 </ol>
-<p>という流れとなっている．</p>
 </div>
 <div class="section" id="remove-block">
 <span id="remove-block"></span><h4>1.3.2.3. Remove Block<a class="headerlink" href="#remove-block" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>不要になったブロックを削除するには，『フィルタツールチップ』もしくは『キャンバス』上のゴミ箱へブロックをドラッグ＆ドロップすれば良い．
+<p>To delete a block that is no longer needed, drag-and-drop the blocks to the &#8220;Filter tool tip&#8221; or the Trash on Canvas.
 <img alt="txt" src="../_images/uma_filtergenerator_blockremoving.png" /></p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p>Outputブロックとブロックが離れている場合，使われていないブロックがある場合にはエラーとなり，出力が『出力画面』に反映されなくなる．</p>
-<table border="1" class="last docutils" id="id1">
-<caption><span class="caption-text">Error Examples</span><a class="headerlink" href="#id1" title="このテーブルへのパーマリンク">¶</a></caption>
+<p>If the block and another block is away or there is unused block, an error will occur and the output is not reflected to Output screen.</p>
+<table border="1" class="last docutils" id="id2">
+<caption><span class="caption-text">Error Examples</span><a class="headerlink" href="#id2" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="50%" />
 <col width="50%" />
@@ -298,11 +317,11 @@
 <tbody valign="top">
 <tr class="row-even"><td><img alt="../_images/uma_filtergenerator_disconnectedoutputblock.png" class="first last" src="../_images/uma_filtergenerator_disconnectedoutputblock.png" />
 </td>
-<td>ブロックとブロックが離れている場合．</td>
+<td>If the block and another block is away.</td>
 </tr>
 <tr class="row-odd"><td><img alt="../_images/uma_filtergenerator_unusedblock.png" class="first last" src="../_images/uma_filtergenerator_unusedblock.png" />
 </td>
-<td>使われていないブロックがある場合．</td>
+<td>If there is unused block.</td>
 </tr>
 </tbody>
 </table>
@@ -310,10 +329,10 @@
 </div>
 <div class="section" id="block-types">
 <span id="block-types"></span><h4>1.3.2.4. Block Types<a class="headerlink" href="#block-types" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>ブロックは入力/出力があるかで3種類にわけることができる．</p>
-<p><strong>入力/出力ブロックには画像フィルタが割り当てられており，入力ブロックからの動画像をフィルタで変換したものを出力する．</strong></p>
-<table border="1" class="docutils" id="id2">
-<caption><span class="caption-text">Block I/O Types</span><a class="headerlink" href="#id2" title="このテーブルへのパーマリンク">¶</a></caption>
+<p>Block can be divided into three types on whether there are Inputs/Output.</p>
+<p><strong>The block which has Inputs/Output means the specific image filter. The block converts the image from Inputs into Output by the image filter which is assigned to itself.</strong></p>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">Block I/O Types</span><a class="headerlink" href="#id3" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -328,18 +347,18 @@
 <tbody valign="top">
 <tr class="row-even"><td><img alt="../_images/uma_filtergenerator_inputonlyblock.png" class="first last" src="../_images/uma_filtergenerator_inputonlyblock.png" />
 </td>
-<td>入力ブロック</td>
-<td>入力のみを受け付けるブロック．</td>
+<td>Input block</td>
+<td>Block that accepts Inputs only.</td>
 </tr>
 <tr class="row-odd"><td><img alt="../_images/uma_filtergenerator_inputoutputblock.png" class="first last" src="../_images/uma_filtergenerator_inputoutputblock.png" />
 </td>
-<td>入力/出力ブロック</td>
-<td>入力と出力の両方をそなえたブロック．</td>
+<td>Inputs/Output block</td>
+<td>Block which has both Inputs and Output.</td>
 </tr>
 <tr class="row-even"><td><img alt="../_images/uma_filtergenerator_outputonlyblock.png" class="first last" src="../_images/uma_filtergenerator_outputonlyblock.png" />
 </td>
-<td>出力ブロック</td>
-<td>出力のみをもつブロック．</td>
+<td>Output block</td>
+<td>Block with the only output.</td>
 </tr>
 </tbody>
 </table>
@@ -348,59 +367,57 @@
 <div class="section" id="how-to-make-your-own-filter">
 <span id="how-to-make-your-own-filter"></span><h3>1.3.3. How to Make your own Filter<a class="headerlink" href="#how-to-make-your-own-filter" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><img alt="txt" src="../_images/uma_filtergenerator_processed.png" />
-<strong>UMATracker-FilterGenerator</strong>では，個体追跡したい物体の場所が白くなるフィルタを作成することが目標である．上図ではアリのいた場所のみ白くなっていることがわかる．
-そのためには</p>
+In <strong>UMATracker-FilterGenerator</strong>, the goal is to create a filter which makes the location of the animal you want to track white and other locations black.In the figure above, it can be seen that regions that ants exist turned white.
+For that purpose, it is necessary the following procedure.</p>
 <ol class="simple">
-<li>グレースケール変換</li>
-<li>二値化</li>
-<li>解析に不要な領域の除去</li>
-<li>ノイズ除去</li>
+<li>Gray-scale transformation</li>
+<li>Binarization</li>
+<li>Removal of unwanted areas in the analysis</li>
+<li>Noise removal</li>
 </ol>
-<p>という手順をふむ必要がある．</p>
-<p>追跡物体が背景と十分なコントラスト差をもっているときはこの手順で十分個体追跡が可能だが，そうでない場合は前段階として</p>
+<p>These process can be enough to individual tracking if there is sufficient contrast difference between animals and its background. If not, there are the additional options.</p>
 <ol class="simple">
-<li>背景の除去</li>
-<li>色選択による追跡物体の抽出</li>
+<li>Removal of background</li>
+<li>Extraction of the object to be tracked by color selection</li>
 </ol>
-<p>のいずれかをおこなうことで精度よく個体追跡が出来るようになる．</p>
 <p><img alt="txt" src="../_images/uma_filtergenerator_filtermakingsequence.png" /></p>
 <iframe width="640" height="360" src="//www.youtube.com/embed/PEWX8cctaSQ?feature=player_detailpage" frameborder="0" allowfullscreen="1">&nbsp;</iframe><div class="section" id="open-the-video-file">
 <span id="open-the-video-file"></span><h4>1.3.3.1. Open the Video File<a class="headerlink" href="#open-the-video-file" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>メニューより<code class="docutils literal"><span class="pre">Files/Open</span> <span class="pre">Video</span> <span class="pre">File</span></code>を選択，もしくはビデオファイルをウインドウにドラッグアンドドロップすることで解析に使用するビデオを読み込む．
+<p>Select the <code class="docutils literal"><span class="pre">Files</span> <span class="pre">/</span> <span class="pre">Open</span> <span class="pre">Video</span> <span class="pre">File</span></code> from the menu, or drag-and-drop the video file to the window.
 <img alt="txt" src="../_images/uma_filtergenerator_openfile.png" /></p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">ファイルサイズが大きい（GB単位），もしくは長時間のビデオ（15分以上）を読み込むとソフトウェアの動作が遅くなる場合がある．そのような時はビデオを扱う場合は事前にエンコード・動画の分割を行うと解決される．</p>
+<p class="last">If the file size is large (GB unit), or there is a case in which a long period of time of the video (15 minutes or more), the software of the operation becomes slow. In such case, it is resolved by splitting the video or encoding video into the small size in advance.</p>
 </div>
 </div>
 <div class="section" id="generate-background">
 <span id="generate-background"></span><h4>1.3.3.2. Generate Background<a class="headerlink" href="#generate-background" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>背景除去を行うには，メニューより<code class="docutils literal"><span class="pre">Background/Create</span> <span class="pre">Background</span></code>を選択しバックグラウンド生成ダイアログを表示する．</p>
+<p>To do background removal, select <code class="docutils literal"><span class="pre">Background</span> <span class="pre">/</span> <span class="pre">Create</span> <span class="pre">Background</span></code> from the menu. Then, the background generation dialog is shown.</p>
 <p><img alt="txt" src="../_images/uma_filtergenerator_bgsubdialog.png" /></p>
-<p>まず背景生成に使用するビデオの始点と終点を指定する．
-スライダーを動かして，背景生成に使用する動画の始点を選び，Set Minボタンをクリックする．
-すると，始点以降のスライダーバーの色が赤に変化する．
-同様にスライダーを動かして，背景生成に使用する動画の終点を選び，Set Maxボタンをクリックすると
-終点以前のスライダーバーの色が赤になる．
-スライダーバーが赤色の部分のビデオが背景生成に使用される．</p>
+<p>First, specify the start and end points of the video to be used in the background generation.
+Move the slider to select the starting point of the video to be used in the background generation and click the Set Min button.
+Then, the color of the slider bar after starting point is changed to red.
+Similarly, by moving the slider, select the end point of the video to be used in the background generation and click the Set Max button
+End point the color of the previous slider bar becomes red.
+The red interval of the video slider bar is used in the background generation.</p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">正しく背景生成を行うためには，動画の背景が静的（コントラストや位置が変化しない）であることが必要である．背景生成に使用するビデオの始点と終点を指定することで，背景が安定しない撮影開始時・終了時など背景生成に使用したくない部分を除くことが出来る．</p>
+<p class="last">For correct background generation, it is necessary that the background is static (contrast and viewpoint does not change).By specifying the start and end points of the video for the background generation, we can excluding the portion of the video which we do not want to use the background generation.</p>
 </div>
-<p>つぎに解析に使うビデオのフレーム間隔をFrame deltaで指定する．</p>
-<p>以上を指定後Generateボタンを押すと背景生成が開始される．
-背景生成終了後，結果がダイアログ右側のビューに背景除去された結果が反映されるので，スライダーを動かして背景除去に成功しているか確認する．</p>
+<p>Then, specify the video frame interval to use for the analysis into the Frame delta spin box.</p>
+<p>Background generation is started by pressing the Generate button.
+After the background generation ends, the result image which have been background removal is shown in the right side of the view. Check whether you are successful in the background removal by moving the slider.</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">背景生成に使用するフレーム数が多ければ安定して背景生成できるが，処理に時間が掛かる．このようなときは生成に使用するビデオの始点と終点，Frame Deltaを調整する．</p>
+<p class="last">The background generation can be more stable if the large number of frames to be used, but it takes more time. In such case, adjust start and end points and the Frame Delta.</p>
 </div>
 <p><img alt="txt" src="../_images/uma_filtergenerator_bgsubexample.png" /></p>
 <iframe width="640" height="360" src="//www.youtube.com/embed/za1jzU0K56k?feature=player_detailpage" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 <div class="section" id="color-filtering">
 <span id="color-filtering"></span><h4>1.3.3.3. Color Filtering<a class="headerlink" href="#color-filtering" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>カラーマーカーが付いている場合など追跡物体が特徴的な色を有している場合，その色を抽出するフィルタを作成することで追跡物体を抽出することができる．</p>
-<table border="1" class="docutils" id="id3">
-<caption><span class="caption-text">ColorFilter</span><a class="headerlink" href="#id3" title="このテーブルへのパーマリンク">¶</a></caption>
+<p>If the animal has color marker or the characteristic color, it is possible to extract the animal by extracting the specific color.</p>
+<table border="1" class="docutils" id="id4">
+<caption><span class="caption-text">ColorFilter</span><a class="headerlink" href="#id4" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="50%" />
 <col width="50%" />
@@ -413,50 +430,50 @@
 <tbody valign="top">
 <tr class="row-even"><td><img alt="../_images/uma_filtergenerator_colorfilter.png" class="first last" src="../_images/uma_filtergenerator_colorfilter.png" />
 </td>
-<td>右のカラーパレットで色を選択し左の類似度（数値）を調整することで色を選択する．</td>
+<td>Select a color by the color palette in the right side of the block and adjust the degree of similarity in number input field.</td>
 </tr>
 </tbody>
 </table>
-<p><code class="docutils literal"><span class="pre">Color</span> <span class="pre">Filter</span></code>は<code class="docutils literal"><span class="pre">Filters</span></code>ツールチップに含まれている．
-ブロック左の赤色の部分をクリックするとカラーパレットがひらき，抽出したい色を選択することができる．
-ブロック右の数値入力欄は色の類似度を表しており，選択した色とどの程度類似した色を抽出するか調整可能となっている．</p>
-<p><img alt="txt" src="../_images/uma_filtergenerator_colorfilterio.png" /></p>
+<p><code class="docutils literal"><span class="pre">Color</span> <span class="pre">Filter</span></code> is included in the <code class="docutils literal"><span class="pre">Filters</span></code> tool tip.
+If you click the red portion of the block, the color palette appears. Then, select the color you want to extract.
+Numerical input field on the right side of block represents the similarity of colors.</p>
+<p><img alt="txt" src="../_images/uma_filtergenerator_colorfilterio1.png" /></p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">ColorFilterブロックを選択後，『入力画面』上の抽出したい色の部分をクリックすることで色を選択することもできる．</p>
+<p class="last">While selecting ColorFilter block on Canvas, it is also possible to select a color by clicking the part to be extracted on &#8220;Input screen&#8221;.</p>
 </div>
 <iframe width="640" height="360" src="//www.youtube.com/embed/3ktUtdCrQzk?feature=player_detailpage" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
 <div class="section" id="convert-to-gray-scale">
 <span id="convert-to-gray-scale"></span><h4>1.3.3.4. Convert to Gray Scale<a class="headerlink" href="#convert-to-gray-scale" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>個体追跡したい物体の場所のみが白くなるフィルタを作成するためには，その前にカラー画像を各ピクセルが0 - 255の値を持つグレースケール画像に変換する必要がある．
-そこで<code class="docutils literal"><span class="pre">Filters</span></code>ツールチップに含まれる<code class="docutils literal"><span class="pre">BGRToGray</span></code>ブロックを用いて，カラー画像をグレースケール画像に変換する．</p>
-<p>背景除去を行った後のアリの動画で<code class="docutils literal"><span class="pre">BGRToGray</span></code>ブロックを用いた例を示す．
+<p>In order to create a filter that only object of the region where you want to track is made white, there is a need to be converted to gray scale image that each pixel have a value between 0 and 255.
+To convert a color image into gray scale image, we use <code class="docutils literal"><span class="pre">BGRToGray</span></code> block in <code class="docutils literal"><span class="pre">Filter</span></code> tooltip.</p>
+<p>This is an example of applying a <code class="docutils literal"><span class="pre">BGRToGray</span></code> block into ants video after the background removal.
 <img alt="txt" src="../_images/uma_filtergenerator_blockadded.png" />
 <img alt="txt" src="../_images/uma_filtergenerator_bgrtograyexample.png" /></p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">例では見た目に変化はないが，必須の作業なので二値化の前に必ずおこなうこと．</p>
+<p class="last">Even if there is no change in the appearance, be sure to perform it before binarizing because it is essential work.</p>
 </div>
 </div>
 <div class="section" id="binarize">
 <span id="binarize"></span><h4>1.3.3.5. Binarize<a class="headerlink" href="#binarize" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p><img alt="txt" src="../_images/uma_filtergenerator_grayscale.png" />
-グレースケール画像は各ピクセルが0 - 255の値を持っており，値0が黒をあらわし255に近い値であるほどそのピクセルは白に近い色となる．
-前述のグレースケール変換では画像の追跡したい固体の部分が明るく抜き出されているので，その部分のみを白く抜き出せば最初の目標の画像に到達できる．</p>
-<p>そこで，<code class="docutils literal"><span class="pre">Threshold</span></code>ブロックをもちいて二値化をおこなう．
-二値化とは，グレースケール画像を白と黒の2階調画像に変換することであり，ある閾値を定めて，各ピクセルの値がその閾値を上回っているとき255（白），そうでないときは0（黒）にそのピクセルの値を変換する画像フィルタである．</p>
-<p><code class="docutils literal"><span class="pre">Threshold</span></code>ブロックの右側の数値入力欄が閾値をあらわしている．</p>
-<p>前述でグレースケール変換を行ったアリの動画で<code class="docutils literal"><span class="pre">Threshold</span></code>ブロックを用いた例を示す．</p>
+Gray scale image is the image each pixel is in from 0 to 255. The pixel which value close to 0 represents the black, value close to 255 represents the white.
+After the above gray scale conversion, the regions which you want to track have been bright gray color. We can reach the final goal of the image by converting them into white.</p>
+<p>Image is binarized by <code class="docutils literal"><span class="pre">Threshold</span></code> block.
+The binarization is to convert the gray scale image into a black and white two-tone image. Each pixel is converted to 255 (white) when its value is above the pre-defined threshold, otherwise 0 (black).</p>
+<p>The right side of <code class="docutils literal"><span class="pre">Threshold</span></code> block is the numerical value input field for the threshold.</p>
+<p>Applying <code class="docutils literal"><span class="pre">Threshold</span></code> block to the gray-scale ants video which mentioned above becomes as follow.</p>
 <p><img alt="txt" src="../_images/uma_filtergenerator_binarize.png" />
 <img alt="txt" src="../_images/uma_filtergenerator_binarizeexample.png" /></p>
 </div>
 <div class="section" id="exclude-the-obstacle-by-the-region-selector">
 <span id="exclude-the-obstacle-by-the-region-selector"></span><h4>1.3.3.6. Exclude the Obstacle by the Region Selector<a class="headerlink" href="#exclude-the-obstacle-by-the-region-selector" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>解析に不要な領域が個体追跡の精度に悪影響を及ぼすことがある．
-そこで範囲選択をおこなうことで，解析に不要な領域を除去する必要がある．</p>
-<p><code class="docutils literal"><span class="pre">UMATracker-FilterGenerator</span></code>は矩形による選択<code class="docutils literal"><span class="pre">Rectangle</span> <span class="pre">selection</span></code>ブロック・楕円による選択<code class="docutils literal"><span class="pre">Circular</span> <span class="pre">selection</span></code>ブロック・任意の4頂点での範囲選択<code class="docutils literal"><span class="pre">Poly</span> <span class="pre">Selection</span></code>ブロックを有している．</p>
-<table border="1" class="docutils" id="id4">
-<caption><span class="caption-text">Selection/Exclusion Blocks</span><a class="headerlink" href="#id4" title="このテーブルへのパーマリンク">¶</a></caption>
+<p>Unwanted areas in analysis affects the accuracy of the individual tracking.
+Therefore remove the unwanted areas by selecting the area for analysis.</p>
+<p><code class="docutils literal"><span class="pre">UMATracker-FilterGenerator</span></code> has four types of region selection operator, <code class="docutils literal"><span class="pre">Poly</span> <span class="pre">Selection</span></code>, <code class="docutils literal"><span class="pre">Circular</span> <span class="pre">selection</span></code> and <code class="docutils literal"><span class="pre">Rectangle</span> <span class="pre">selection</span></code> block.</p>
+<table border="1" class="docutils" id="id5">
+<caption><span class="caption-text">Selection/Exclusion Blocks</span><a class="headerlink" href="#id5" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="25%" />
 <col width="13%" />
@@ -471,48 +488,48 @@
 <tbody valign="top">
 <tr class="row-even"><td><img alt="../_images/uma_filtergenerator_rectsel.png" class="first last" src="../_images/uma_filtergenerator_rectsel.png" />
 </td>
-<td>矩形</td>
+<td>Rectangle</td>
 <td><img alt="../_images/uma_filtergenerator_rectselexample.png" class="first last" src="../_images/uma_filtergenerator_rectselexample.png" />
 </td>
 </tr>
 <tr class="row-odd"><td><img alt="../_images/uma_filtergenerator_circsel.png" class="first last" src="../_images/uma_filtergenerator_circsel.png" />
 </td>
-<td>楕円</td>
+<td>Ellipse</td>
 <td><img alt="../_images/uma_filtergenerator_circselexample.png" class="first last" src="../_images/uma_filtergenerator_circselexample.png" />
 </td>
 </tr>
 <tr class="row-even"><td><img alt="../_images/uma_filtergenerator_polysel.png" class="first last" src="../_images/uma_filtergenerator_polysel.png" />
 </td>
-<td>4頂点</td>
+<td>Polygon</td>
 <td><img alt="../_images/uma_filtergenerator_polyselexample.png" class="first last" src="../_images/uma_filtergenerator_polyselexample.png" />
 </td>
 </tr>
 </tbody>
 </table>
-<p>前述で二値化を行ったアリの動画で<code class="docutils literal"><span class="pre">Circular</span> <span class="pre">selection</span></code>ブロックを用いた例を示す．
-前段階ではシャーレの縁が写っていたが，<code class="docutils literal"><span class="pre">Circular</span> <span class="pre">selection</span></code>ブロックを用いることでシャーレ内のみを抜き出すことに成功している．</p>
+<p>The following image shows the applying <code class="docutils literal"><span class="pre">Circular</span> <span class="pre">selection</span></code> block to the ant video which were binarized above.
+There are still remained edges of the petri dish on the left image. It has succeeded in extracting only in the dish by using <code class="docutils literal"><span class="pre">Circular</span> <span class="pre">selection</span></code> block on the right image.</p>
 <p><img alt="txt" src="../_images/uma_filtergenerator_excludeblock.png" />
 <img alt="txt" src="../_images/uma_filtergenerator_excludeexample.png" /></p>
 <iframe width="640" height="360" src="//www.youtube.com/embed/NRFRUSzR6xk?feature=player_detailpage" frameborder="0" allowfullscreen="1">&nbsp;</iframe><iframe width="640" height="360" src="//www.youtube.com/embed/fqht_bxmx3s?feature=player_detailpage" frameborder="0" allowfullscreen="1">&nbsp;</iframe><div class="admonition note">
 <p class="first admonition-title">注釈</p>
-<p class="last">各ブロックのチェックボックスをオフにすると，切り取られる領域が反転する．</p>
+<p class="last">If you set the check box of each block off, the cut area is reversed.</p>
 </div>
 </div>
 <div class="section" id="noise-reduction">
 <span id="noise-reduction"></span><h4>1.3.3.7. Noise Reduction<a class="headerlink" href="#noise-reduction" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>動画ファイルにはノイズが必ず含まれる．ノイズの原因は，観察者の移動などで発生する照度の微妙な変化・実験環境に含まれる微妙なチリ・動物の糞など様々である．これらのノイズを極力排除することで，精度良く個体追跡をおこなえる．</p>
-<p>最も簡単なノイズ除去は<code class="docutils literal"><span class="pre">Erosion</span></code>ブロックを使うことである．
-Erosionは白色の領域を縮めるようなフィルタのことで，これを用いることで追跡物体よりも小さいノイズを除去することができる．
+<p>The video images sometimes have noise.The cause of the noise is a variety, such as feces of animals, dusts, the illumination change or the movement of camera.By eliminating these noise as much as possible, it can be performed with high precision individual tracking.</p>
+<p>The simplest noise removal is to use the <code class="docutils literal"><span class="pre">Erosion</span></code> block.
+Erosion is that the filter as reduce the white areas. It is possible to remove smaller noises than the object to be tracked.
 <img alt="txt" src="../_images/uma_filtergenerator_erosionexample.png" /></p>
-<p>前述の不要な領域の除去を行ったアリの動画で<code class="docutils literal"><span class="pre">Erosion</span></code>ブロックを用いた例を示す．</p>
+<p>The following image shows an example of applying <code class="docutils literal"><span class="pre">Erosion</span></code> block to the ant video.</p>
 <p><img alt="txt" src="../_images/uma_filtergenerator_noisereduction.png" /></p>
 </div>
 <div class="section" id="save-filter-data">
 <span id="save-filter-data"></span><h4>1.3.3.8. Save Filter Data<a class="headerlink" href="#save-filter-data" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>メニューより<code class="docutils literal"><span class="pre">Files/Save</span> <span class="pre">Filter</span> <span class="pre">Data</span></code>を選択することでフィルタデータ（拡張子<code class="docutils literal"><span class="pre">.filter</span></code>）が保存される．</p>
+<p>Filter data (extension <code class="docutils literal"><span class="pre">.filter</span></code>) is saved by selecting the <code class="docutils literal"><span class="pre">Files</span> <span class="pre">/</span> <span class="pre">Save</span> <span class="pre">Filter</span> <span class="pre">Data</span></code> from the menu.</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">Gray Scale変換・Binarizeを行っていない場合は個体追跡に失敗するので，保存前にGray Scale変換・Binarizeが行われていることを確認すること．</p>
+<p class="last">If not Gray Scaled or Binarized, individual tracking fails. Be sure that the Gray Scale conversion and Binarize is performed before saving.</p>
 </div>
 </div>
 </div>
@@ -521,48 +538,318 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 <span id="umatracker-tracking"></span><h2>1.4. UMATracker-Tracking<a class="headerlink" href="#umatracker-tracking" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="tracking-window">
 <span id="tracking-window"></span><h3>1.4.1. Tracking Window<a class="headerlink" href="#tracking-window" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>以下に<strong>UMATracker-Tracking</strong>の画面各部の名称および説明を示す．</p>
+<p>The following shows the name and description of each part of the screen <strong>UMATracker-Tracking</strong>.</p>
 <p><img alt="txt" src="../_images/uma_tracking_mainwindow.png" /></p>
 <ol>
-<li><p class="first">個体追跡結果画面</p>
-<p>入力動画と個体追跡結果を表示する．</p>
+<li><p class="first">Tracking results view</p>
+<p>Show the input video and individual tracking results.</p>
 </li>
-<li><p class="first">個体追跡パラメタ設定画面</p>
-<p>個体数など，トラッキングで使用する値を変更する．設定可能なパラメタはトラッキングアルゴリズムより異なる．</p>
+<li><p class="first">Tracking parameter setting view</p>
+<p>Set the parameter in tracking, such as the number of individuals and so on.Configurable parameters vary with tracking algorithms.
+In this section, it is described as an example of the setting screen of GroupTracker GMM, which is used by default.</p>
+<p><img alt="txt" src="../_images/uma_tracking_settings.png" /></p>
+<ol>
+<li><p class="first">#of objects</p>
+<p>Enter the number of the object to be tracked.</p>
 </li>
-<li><p class="first">結果表示設定画面</p>
-<p>個体追跡結果の表示の詳細を設定する項目．</p>
+<li><p class="first">#of k-means</p>
+<p>The number of clusters in pre-clustering. Usually specify the same value as the object to be tracked.</p>
+</li>
+<li><p class="first">Likelihood diff. threshold</p>
+<p>It represents a threshold value of similarity between the present tracking result and the previous one.If the likelihood exceed the threshold, discard the feature information that has been used and get the new feature information from image.</p>
+</li>
+<li><p class="first">Restart from this frame</p>
+<p>Press this button after you fixed the tracking errors.When this button is pressed, it is possible to restart the tracking from the current video playback position as the correction reflected.</p>
+</li>
+<li><p class="first">Set/Reset</p>
+<p>The Button to start a new individual track by applying the set of parameters above.You press the button when you want to redo the parameter change or redo the tracking from the start. The input video is rewound to the start position after pressed.Previous tracking results are discarded.</p>
+</li>
+</ol>
+</li>
+<li><p class="first">Result display setting screen</p>
+<p>The display settings of the individual tracking results.</p>
 <ul>
 <li><p class="first">Radius</p>
-<p>結果画面に表示される個体位置を表す点の大きさを設定する．</p>
+<p>Set the size of the point that represents the individual position on the screen.</p>
 </li>
 <li><p class="first">Line Width</p>
-<p>結果画面に表示される個体の移動した軌跡の太さを設定する．</p>
+<p>Set the thickness of the movement trajectory of the individual on the screen.</p>
 </li>
 <li><p class="first"># of overlay</p>
-<p>前後何フレーム分の軌跡を結果画面に表示するかを設定する．</p>
+<p>Set how much frames the trajectory shown on the screen.</p>
 </li>
 </ul>
 </li>
-<li><p class="first">トラッキングアルゴリズム選択メニュー</p>
-<p><strong>UMATracker-Tracking</strong>には複数の個体追跡アルゴリズムが搭載されており，それをトラッキングアルゴリズム選択メニューから
-選択することができる．</p>
+<li><p class="first">Tracking algorithm selection menu</p>
+<p>The <strong>UMATracker-Tracking</strong> has multiple individual tracking algorithms. You can select it from the tracking algorithm selection menu.</p>
 </li>
-<li><p class="first">Filesメニュー</p>
-<p>動画・フィルタの読み込み，トラッキング結果の保存をおこなう．</p>
+<li><p class="first">Files menu</p>
+<p>Load video, filter or save the tracking result.</p>
 </li>
 </ol>
 </div>
 <div class="section" id="load-the-video-and-its-filter-data">
 <span id="load-the-video-and-its-filter-data"></span><h3>1.4.2. Load the Video and its Filter data<a class="headerlink" href="#load-the-video-and-its-filter-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>はじめに解析対象の動画と前述の<strong>UMATracker-FilterGenerator</strong>で作成したフィルタデータをドラッグ&amp;ドロップで読み込む．
-<img alt="txt" src="../_images/uma_tracking_loadvideo.png" />
-<img alt="txt" src="../_images/uma_tracking_loadfilter.png" /></p>
+<p>At the beginning, drag-and-drop the video and its filter data that was created on <strong>UMATracker-FilterGenerator</strong>.</p>
+<p><img alt="txt" src="../_images/uma_tracking_loaddata.png" /></p>
 </div>
-<div class="section" id="set-the-parameter">
-<span id="set-the-parameter"></span><h3>1.4.3. Set the Parameter<a class="headerlink" href="#set-the-parameter" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>つぎに個体追跡に必要なパラメタを個体追跡パラメタ設定画面で設定する．</p>
+<div class="section" id="set-tracking-parameter">
+<span id="set-tracking-parameter"></span><h3>1.4.3. Set Tracking Parameter<a class="headerlink" href="#set-tracking-parameter" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><img alt="txt" src="../_images/uma_tracking_setparameter.png" /></p>
+<p>Next, set the parameters required for the tracking on the tracking parameter settings view.
+In GroupTracker GMM, specify the number of tracking objects ( <code class="docutils literal"><span class="pre">#</span> <span class="pre">of</span> <span class="pre">objects</span></code>). After that, press the <code class="docutils literal"><span class="pre">Set</span> <span class="pre">/</span> <span class="pre">Reset</span></code> button. Circles that indicate individual positions and individual numbers are shown on tracking result view.</p>
+</div>
+<div class="section" id="execute-object-tracking">
+<span id="execute-object-tracking"></span><h3>1.4.4. Execute Object Tracking<a class="headerlink" href="#execute-object-tracking" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Check if the positions are estimated properly on the tracking result view. After the video playback started, the tracking will start on together.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">By clicking Run/Run Object Tracking menu, it is also possible to carry out the individual track without video playback.</p>
+</div>
+</div>
+<div class="section" id="fix-mis-detection">
+<span id="fix-mis-detection"></span><h3>1.4.5. Fix Mis-Detection<a class="headerlink" href="#fix-mis-detection" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Due to the effects of noise, the individual tracking sometimes breaks down or gets an error message.In such a case, rewind the video to the position where the collapse happened, and modify the tracking result on the tracking results screen by drag-and-drop.Then, press the <code class="docutils literal"><span class="pre">Restart</span> <span class="pre">from</span> <span class="pre">this</span> <span class="pre">frame</span></code> button, and the individual tracking is resumed after the correction state.</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">You can fix the individual tracking fail, such as swapping or displacement, by UMATrcker-TrackingCorrecter.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Not able to correspond to all failures.In such a case, there is a need to modify the filter that you created in the previous section.</p>
+</div>
+</div>
+<div class="section" id="save-tracking-data">
+<span id="save-tracking-data"></span><h3>1.4.6. Save Tracking Data<a class="headerlink" href="#save-tracking-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Press <code class="docutils literal"><span class="pre">Files</span> <span class="pre">/</span> <span class="pre">Save</span> <span class="pre">Data</span></code> menu, and save the coordinate data obtained by the individual tracking.</p>
+<ol>
+<li><p class="first">Information of the video</p>
+<p>Such as FPS, detailed information of the loaded video is saved as a text file.</p>
+</li>
+<li><p class="first">Individual tracking results</p>
+<p>The tracking results will depend on the individual tracking algorithm.Results of GroupTracker GMM are saved as a CSV which row is a video frame number and column is tracking coordinate of each individual object.The coordinates of each individual are arranged in the order of the individual number that is displayed on the tracking result display view.
+<img alt="txt" src="../_images/uma_tracking_outputcsv.png" /></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="umatracker-trackingcorrector">
+<span id="umatracker-trackingcorrector"></span><h2>1.5. UMATracker-TrackingCorrector<a class="headerlink" href="#umatracker-trackingcorrector" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Since the tracking miss occurs in many cases, it is necessary to modify the stroke of tracking in order to obtain a correct tracking results.By using <strong>UMATracker-TrackingCorrector</strong>, you can easily correct tracking errors.</p>
+<div class="section" id="trackingcorrector-window">
+<span id="trackingcorrector-window"></span><h3>1.5.1. TrackingCorrector Window<a class="headerlink" href="#trackingcorrector-window" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The following shows the name and description of each part of the screen <strong>UMATracker-TrackingCorrector</strong>.</p>
+<p><img alt="txt" src="../_images/uma_trackingcorrector_mainwindow.png" /></p>
+<ol>
+<li><p class="first">Individual tracking results view</p>
+<p>The view for displaying the individual tracking results.By range selection on the tracking results view, the range selected portion is enlarged and displayed on the right side of the window.</p>
+</li>
+<li><p class="first">Tracking results expansion view
+The range selected portion is enlarged and displayed in this view.When the circle which points the position of object is right-clicked, its tracking trajectory becomes selected. The shape of selected trajectories change to square. After selected two trajectories, the <code class="docutils literal"><span class="pre">Swap</span></code> button appears. The two trajectories after this video playback position will be swapped by clicking the <code class="docutils literal"><span class="pre">Swap</span></code> button.</p>
+</li>
+<li><p class="first">Result display setting view</p>
+<p>Set the display parameters of the tracking result.</p>
+<ul>
+<li><p class="first">Path Length</p>
+<p>Set how long to display the past and future trajectory from the current result.</p>
+</li>
+<li><p class="first">Radius</p>
+<p>Set the size of the marker that represents a result.</p>
+</li>
+<li><p class="first">Mark Interval</p>
+<p>Set the mark interval on each trajectory.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Change the Order of Individual Numbers</p>
+<p>The menu for swapping the number assigned to each individual.
+To exchange the numbers assigned to two individuals, select two number and click the <code class="docutils literal"><span class="pre">Swap</span></code> button.
+<img alt="txt" src="../_images/uma_trackingcorrector_swapdatanum.png" /></p>
+</li>
+</ol>
+</div>
+<div class="section" id="data-correction">
+<span id="data-correction"></span><h3>1.5.2. Data Correction<a class="headerlink" href="#data-correction" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>First of all, drag-and-drop the video and its data obtained from <strong>UMATracker-Tracking</strong> into <strong>UMATracker-TrackingCorrector</strong>.
+Then, adjust items on the display, such as <code class="docutils literal"><span class="pre">Path</span> <span class="pre">Length</span></code>, to make it easier to find the mis-detection of trajectory.</p>
+<div class="section" id="zoom-up">
+<span id="zoom-up"></span><h4>1.5.2.1. Zoom Up<a class="headerlink" href="#zoom-up" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>By using the magnifying function, it is possible to find the place likely to occur the mis-tracking.
+When you do a region selection by the drag-and-drop on the left side of the result display screen, the selected region is shown on the tracking results expansion view, the right side of the window.</p>
+<p><img alt="txt" src="../_images/uma_trackingcorrector_zoom.png" /></p>
+</div>
+<div class="section" id="fix-the-position-aberration">
+<span id="fix-the-position-aberration"></span><h4>1.5.2.2. Fix the Position Aberration<a class="headerlink" href="#fix-the-position-aberration" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>If you find a tracking mistake, it can be modified by dragging and dropping the marker on the tracking results expansion view.</p>
+<p><img alt="txt" src="../_images/uma_trackingcorrector_fixdata.png" /></p>
+</div>
+<div class="section" id="correct-the-data-swapping">
+<span id="correct-the-data-swapping"></span><h4>1.5.2.3. Correct the Data Swapping<a class="headerlink" href="#correct-the-data-swapping" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>If you find a swapping between two trajectories, look for the video playback position of the video that turnover has occurred.
+Set the video playback position where the swapping occurred, and select the markers of two individuals on the tracking results expansion view.
+After selecting, <code class="docutils literal"><span class="pre">Swap</span></code> menu is shown. The swapping is fixed when you click <code class="docutils literal"><span class="pre">Swap</span></code> menu.</p>
+<p><img alt="txt" src="../_images/uma_trackingcorrector_selectandswap.png" /></p>
+</div>
+<div class="section" id="save-data">
+<span id="save-data"></span><h4>1.6.5. Save Data<a class="headerlink" href="#save-data" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Once the modification is complete, save the modified results by selecting the <code class="docutils literal"><span class="pre">Files</span> <span class="pre">/</span> <span class="pre">Save</span> <span class="pre">Data</span></code> menu.</p>
+</div>
+</div>
+</div>
+<div class="section" id="umatracker-area51">
+<span id="umatracker-area51"></span><h2>1.6. UMATracker-Area51<a class="headerlink" href="#umatracker-area51" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><strong>UMATracker-Area51</strong> privides the analysis functions for individual tracking results.
+The analysis is carried out by arranging the object, such as area, line or point, on the video screen.</p>
+<ul>
+<li><p class="first">Area object</p>
+<p>By arranging the Area object, it is possible to calculate whether each individual are in this area or not on each video playback timing.
+For example, in the figure below, two areas, the region 1 (blue) and the region 2 (red) is placed on the video (left).
+After the calculation, the time variation of where each individual exists is plotted as a diagram (right).
+<img alt="txt" src="../_images/uma_area51_regionobject.png" /></p>
+</li>
+<li><p class="first">直線オブジェクト</p>
+<p>By arranging the line object, it is possible to calculate the distance to the straight line object from each individual.
+For example, in the figure below, the time variation plot of the distance to the red line, which is placed on the video (left), from each individual are shown.
+<img alt="txt" src="../_images/uma_area51_lineobject.png" /></p>
+</li>
+<li><p class="first">点オブジェクト
+By placing the point object, it is possible to calculate the distance to the point object from each individual.
+For example, in the figure below, the time variation plot of the distance to the red dot, which is placed on the video (left), from each individual are shown.
+<img alt="txt" src="../_images/uma_area51_pointobject.png" /></p>
+</li>
+</ul>
+<p>Furthermore, <strong>UMATracker-Area51</strong> can analyse the inter-individual interaction analysis which is based on the distance between each individual.</p>
+<p><img alt="txt" src="../_images/uma_area51_interactionexample.png" /></p>
+<div class="section" id="area51-window">
+<span id="area51-window"></span><h3>1.6.1. Area51 Window<a class="headerlink" href="#area51-window" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>The following shows the name and description of each part of the screen <strong>UMATracker-Area51</strong>.
+<img alt="txt" src="../_images/uma_area51_mainwindow.png" /></p>
+<ol>
+<li><p class="first">Individual tracking results/objects display screen</p>
+<p>Input video and individual tracking results, and to display the objects that were added by the user.</p>
+</li>
+<li><p class="first">Object list table</p>
+<p>The list of objects placed on the video screen. Each row corresponds to each object and shows the name, color, and type of its object.</p>
+<ul>
+<li><p class="first">Name column</p>
+<p>The name of the object.
+When you double-click on an cell of this column, you can edit the name of the object.</p>
+</li>
+<li><p class="first">Color column</p>
+<p>The display color of the object.
+When you double-click on an element of this column, the pull-down menu are shown. You can change the new display color of the object by selecting the new color from the pull-down menu.</p>
+</li>
+<li><p class="first">Type column</p>
+<p>The type of object (eg. Line, Point, etc.).
+When you double-click on an element of this column, the pull-down menu are shown. You can change the type of the object by selecting the new type name from the pull-down menu.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Object Add/Remove/Priorities change button</p>
+<ul>
+<li><p class="first">+/- Button</p>
+<p>Add/delete the selected object.</p>
+</li>
+<li><p class="first">Up/Down arrow button</p>
+<p>Perform replacement the priorities of objects.It will be described later.</p>
+</li>
+</ul>
+</li>
+<li><p class="first">Radius parameter input box</p>
+<p>Input box for the radius of the circle markers representing each individual.
+This value is used when calculating the individual interaction (see below).</p>
+</li>
+</ol>
+</div>
+<div class="section" id="load-the-video-and-tracking-result">
+<span id="load-the-video-and-tracking-result"></span><h3>1.6.2. Load the Video and Tracking Result<a class="headerlink" href="#load-the-video-and-tracking-result" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Drag-and-drop the video and tracking result data into the window.</p>
+</div>
+<div class="section" id="add-and-select-object">
+<span id="add-and-select-object"></span><h3>1.6.3. Add and Select Object<a class="headerlink" href="#add-and-select-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Then, add an object to be used for analysis.
+When you press the <code class="docutils literal"><span class="pre">+</span> <span class="pre">Button</span></code> in the lower right corner of the window, the object is added in the object list table and displayed in the individual tracking results/object display screen.
+<img alt="txt" src="../_images/uma_area51_addobject.png" /></p>
+<p>Type of object can be divided into two groups, <code class="docutils literal"><span class="pre">Distance</span> <span class="pre">Calculation</span> <span class="pre">Object</span> <span class="pre">Type</span></code> and <code class="docutils literal"><span class="pre">Region</span> <span class="pre">of</span> <span class="pre">Interest</span> <span class="pre">(RoI)</span> <span class="pre">Object</span> <span class="pre">Type</span></code>.
+<code class="docutils literal"><span class="pre">Distance</span> <span class="pre">Calculation</span> <span class="pre">Object</span> <span class="pre">Type</span></code> has 2 sub-types, and <code class="docutils literal"><span class="pre">Region</span> <span class="pre">of</span> <span class="pre">Interest</span> <span class="pre">Object</span> <span class="pre">Type</span></code> has 3 sub-types.</p>
+<ol class="simple">
+<li>Disntance Calculation Object Type<ul>
+<li>Point Object</li>
+<li>Line Object</li>
+</ul>
+</li>
+<li>Region of Interest (RoI) Object Type<ul>
+<li>Rectangular Object</li>
+<li>Ellipse Object</li>
+<li>Polygon Object</li>
+</ul>
+</li>
+</ol>
+<p>The pull-down menu are shown when you double-click the Type column of an object row that are displayed in the list table. You can change the type of object by selecting the new type from the pull-down menu.</p>
+<p><img alt="txt" src="../_images/uma_area51_selectobjecttype.png" /></p>
+<p>By double-clicking the Color column of an object row that are displayed in the list table, you can change the color of object in the same way.</p>
+<p><img alt="txt" src="../_images/uma_area51_selectcolor.png" /></p>
+<p>You can add more than one object into the object list table.
+The arrangement of objects in the object list table represents the priority rank of the object. The object which has the low rank order is drawn to an individual tracking results / object display screen.
+Order of the objects can be changed by the up and down buttons at the bottom right of the screen.</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p>When the object is hidden to other objects, it may become impossible to move it. In such a case, it can be movable by changing its priority rank by Up/Down button.</p>
+<img alt="../_images/uma_area51_swaprow.png" class="last" src="../_images/uma_area51_swaprow.png" />
+</div>
+</div>
+<div class="section" id="data-analysis">
+<span id="data-analysis"></span><h3>1.6.4. Data Analysis<a class="headerlink" href="#data-analysis" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>There are two types of analysis methods, &#8220;Distance from a Point / Line Analysis&#8221; by <code class="docutils literal"><span class="pre">Distance</span> <span class="pre">Calculation</span> <span class="pre">Object</span> <span class="pre">Type</span></code> and &#8220;Region of Interests Analysis&#8221; by <code class="docutils literal"><span class="pre">Region</span> <span class="pre">of</span> <span class="pre">Interests</span> <span class="pre">Object</span> <span class="pre">Type</span></code>.The following describes the operation procedure for each of the analysis technique.</p>
+<div class="section" id="distance-from-a-point-line-analysis">
+<span id="distance-from-a-point-line-analysis"></span><h4>1.6.4.1. Distance from a Point/Line Analysis<a class="headerlink" href="#distance-from-a-point-line-analysis" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>In this analysis, it is possible to calculate the distance to each individual from the <code class="docutils literal"><span class="pre">Point/Line</span> <span class="pre">Object</span></code> arranged in the individual tracking result/objects display screen.</p>
+<p>First, add the Object by pressing the <code class="docutils literal"><span class="pre">+</span> <span class="pre">Button</span></code> in the lower right corner of the screen.
+Then you select the object type from the pull-down menu that appears when you double-click on the Type column of the added object. Select The <code class="docutils literal"><span class="pre">Point</span> <span class="pre">Object</span> <span class="pre">Type</span></code> If you want to calculate the distance to each individual from a certain point. When you select the <code class="docutils literal"><span class="pre">Line</span> <span class="pre">Object</span> <span class="pre">Type</span></code>, you can calculate the distance from a straight line to each individual.</p>
+<ol>
+<li><p class="first">Point Object</p>
+<p>The square point are displayed on the individual tracking results/object display screen when you select this object.
+By dragging and dropping the square point, you can change the position of the object.
+The distance between the square point object and each individual is calculated by selecting the <code class="docutils literal"><span class="pre">Run</span> <span class="pre">/</span> <span class="pre">Calculate</span></code> menu.</p>
+</li>
+<li><p class="first">Line Object</p>
+<p>The straight line is shown on the individual tracking results / object display screen by selecting the Line Object.
+You can change the position of the end of the straight line by dragging and dropping the displayed endpoints of it.
+When you select the <code class="docutils literal"><span class="pre">Run</span> <span class="pre">/</span> <span class="pre">Calculate</span></code> menu, the shortest distance from the the Line Object to each individual is calculated.
+Let the coordinates of a two-dimensional space as <span class="math">\((x, y)\)</span>, and the equation of the straight line which is placed on the individual tracking results/object display screen as <span class="math">\(ax + by + c = 0\)</span>. In this case, the shortest distance from each individual position <span class="math">\((x_i, y_i)\)</span> to the straight line becomes <span class="math">\(|ax_i + by_i +c|/\sqrt{a^2 + b^2}\)</span>.</p>
+</li>
+</ol>
+<p>It is possible to calculate the distance to each individual from each of the object you arranged by selecting the <code class="docutils literal"><span class="pre">Run</span> <span class="pre">/</span> <span class="pre">Calculate</span></code> menu.
+Data is calculated for each object and displayed as a Line Plot.</p>
+<p>Its abscissa represents video frame numbers and its ordinate represents the distance from the object.
+The name of the window that displays the analysis result is the name of the analyzed object.</p>
+<p><img alt="txt" src="../_images/uma_area51_distancewindow.png" /></p>
+</div>
+<div class="section" id="region-of-interests-analysis">
+<span id="region-of-interests-analysis"></span><h4>1.6.4.2. Region of Interests Analysis<a class="headerlink" href="#region-of-interests-analysis" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>In this analysis, you can calculate where each individual is.</p>
+<p>This analysis outputs whether each individual is in the area of the RoI Object which you placed on the individual tracking results/object display screen.</p>
+<p>First, add the Object by pressing the <code class="docutils literal"><span class="pre">+</span> <span class="pre">Button</span></code> in the lower right corner of the screen.
+There are three types of the RoI Objects, Rectangular Object, Ellipse Object and Polygon Object.
+You select these types according to the area which you want to analyze.
+You can change the position and shape of an object by dragging and dropping.</p>
+<p>After placing the object you added on the area to be focused and selecting the <code class="docutils literal"><span class="pre">Run</span> <span class="pre">/</span> <span class="pre">Calculate</span></code> menu, you can calculate which area, described as the object you placed, each individual is in.
+The result is visualized as a diagram.
+The horizontal axis of the diagram is time (video frame number), and the vertical axis represents the number of each individual.
+The color of the diagram corresponds to the color of the RoI Object where each individual has been stayed each time.</p>
+<p><img alt="txt" src="../_images/uma_area51_roioutput.png" /></p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p>When you arranged to overlap the RoI Object, attention is necessary at this time.When the individual exists on more than one RoI Object, it is judged to be in the most high rank RoI Object. For example:</p>
+<img alt="../_images/uma_area51_roiexample1.png" src="../_images/uma_area51_roiexample1.png" />
+<p>Changing the order of the RoI Object A and B changes the result.</p>
+<img alt="../_images/uma_area51_roiexample2.png" class="last" src="../_images/uma_area51_roiexample2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="save-data">
+<span id="id1"></span><h3>1.6.5. Save Data<a class="headerlink" href="#save-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Select the <code class="docutils literal"><span class="pre">Files</span> <span class="pre">/</span> <span class="pre">Save</span> <span class="pre">Data</span></code> menu to save the analysis results.</p>
 </div>
 </div>
 </div>
@@ -586,7 +873,7 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Rito Takeuchi.
+        &copy; Copyright 2017, Rito Takeuchi.
 
     </p>
   </div>
