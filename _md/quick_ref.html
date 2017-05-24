@@ -114,33 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#umatracker-tracking">1.4. UMATracker-Tracking</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tracking-window">1.4.1. Tracking Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#load-the-video-and-its-filter-data">1.4.2. Load the Video and its Filter data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-tracking-parameter">1.4.3. Set Tracking Parameter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#execute-object-tracking">1.4.4. Execute Object Tracking</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fix-mis-detection">1.4.5. Fix Mis-Detection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#save-tracking-data">1.4.6. Save Tracking Data</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#umatracker-trackingcorrector">1.5. UMATracker-TrackingCorrector</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#trackingcorrector-window">1.5.1. TrackingCorrector Window</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-correction">1.5.2. Data Correction</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#zoom-up">1.5.2.1. Zoom Up</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fix-the-position-aberration">1.5.2.2. Fix the Position Aberration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#correct-the-data-swapping">1.5.2.3. Correct the Data Swapping</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#save-data">1.5.2.4. Save Data</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#umatracker-area51">1.6. UMATracker-Area51</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#area51-window">1.6.1. Area51 Window</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#load-the-video-and-tracking-result">1.6.2. Load the Video and Tracking Result</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#add-and-select-object">1.6.3. Add and Select Object</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-analysis">1.6.4. Data Analysis</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#distance-from-a-point-line-analysis">1.6.4.1. Distance from a Point/Line Analysis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#region-of-interests-analysis">1.6.4.2. Region of Interests Analysis</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#save-data">1.6.5. Save Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-the-parameter">1.4.3. Set the Parameter</a></li>
 </ul>
 </li>
 </ul>
@@ -310,8 +284,8 @@
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
 <p>Outputブロックとブロックが離れている場合，使われていないブロックがある場合にはエラーとなり，出力が『出力画面』に反映されなくなる．</p>
-<table border="1" class="last docutils" id="id2">
-<caption><span class="caption-text">Error Examples</span><a class="headerlink" href="#id2" title="このテーブルへのパーマリンク">¶</a></caption>
+<table border="1" class="last docutils" id="id1">
+<caption><span class="caption-text">Error Examples</span><a class="headerlink" href="#id1" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="50%" />
 <col width="50%" />
@@ -338,8 +312,8 @@
 <span id="block-types"></span><h4>1.3.2.4. Block Types<a class="headerlink" href="#block-types" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>ブロックは入力/出力があるかで3種類にわけることができる．</p>
 <p><strong>入力/出力ブロックには画像フィルタが割り当てられており，入力ブロックからの動画像をフィルタで変換したものを出力する．</strong></p>
-<table border="1" class="docutils" id="id3">
-<caption><span class="caption-text">Block I/O Types</span><a class="headerlink" href="#id3" title="このテーブルへのパーマリンク">¶</a></caption>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Block I/O Types</span><a class="headerlink" href="#id2" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -425,8 +399,8 @@
 <div class="section" id="color-filtering">
 <span id="color-filtering"></span><h4>1.3.3.3. Color Filtering<a class="headerlink" href="#color-filtering" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>カラーマーカーが付いている場合など追跡物体が特徴的な色を有している場合，その色を抽出するフィルタを作成することで追跡物体を抽出することができる．</p>
-<table border="1" class="docutils" id="id4">
-<caption><span class="caption-text">ColorFilter</span><a class="headerlink" href="#id4" title="このテーブルへのパーマリンク">¶</a></caption>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">ColorFilter</span><a class="headerlink" href="#id3" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="50%" />
 <col width="50%" />
@@ -446,7 +420,7 @@
 <p><code class="docutils literal"><span class="pre">Color</span> <span class="pre">Filter</span></code>は<code class="docutils literal"><span class="pre">Filters</span></code>ツールチップに含まれている．
 ブロック左の赤色の部分をクリックするとカラーパレットがひらき，抽出したい色を選択することができる．
 ブロック右の数値入力欄は色の類似度を表しており，選択した色とどの程度類似した色を抽出するか調整可能となっている．</p>
-<p><img alt="txt" src="../_images/uma_filtergenerator_colorfilterio1.png" /></p>
+<p><img alt="txt" src="../_images/uma_filtergenerator_colorfilterio.png" /></p>
 <div class="admonition note">
 <p class="first admonition-title">注釈</p>
 <p class="last">ColorFilterブロックを選択後，『入力画面』上の抽出したい色の部分をクリックすることで色を選択することもできる．</p>
@@ -481,8 +455,8 @@
 <p>解析に不要な領域が個体追跡の精度に悪影響を及ぼすことがある．
 そこで範囲選択をおこなうことで，解析に不要な領域を除去する必要がある．</p>
 <p><code class="docutils literal"><span class="pre">UMATracker-FilterGenerator</span></code>は矩形による選択<code class="docutils literal"><span class="pre">Rectangle</span> <span class="pre">selection</span></code>ブロック・楕円による選択<code class="docutils literal"><span class="pre">Circular</span> <span class="pre">selection</span></code>ブロック・任意の4頂点での範囲選択<code class="docutils literal"><span class="pre">Poly</span> <span class="pre">Selection</span></code>ブロックを有している．</p>
-<table border="1" class="docutils" id="id5">
-<caption><span class="caption-text">Selection/Exclusion Blocks</span><a class="headerlink" href="#id5" title="このテーブルへのパーマリンク">¶</a></caption>
+<table border="1" class="docutils" id="id4">
+<caption><span class="caption-text">Selection/Exclusion Blocks</span><a class="headerlink" href="#id4" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col width="25%" />
 <col width="13%" />
@@ -554,26 +528,7 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 <p>入力動画と個体追跡結果を表示する．</p>
 </li>
 <li><p class="first">個体追跡パラメタ設定画面</p>
-<p>個体数など，トラッキングで使用する値を変更する．設定可能なパラメタはトラッキングアルゴリズムより異なる．
-ここではデフォルトで使用されるGroupTracker GMMの設定画面を例に説明する．</p>
-<p><img alt="txt" src="../_images/uma_tracking_settings.png" /></p>
-<ol>
-<li><p class="first">#of objects</p>
-<p>追跡物体の個数を入力する．</p>
-</li>
-<li><p class="first">#of k-means</p>
-<p>事前クラスタリングにおけるクラスタ数．通常は１の追跡物体数と同じ値を指定する．</p>
-</li>
-<li><p class="first">Likelihood diff. threshold</p>
-<p>前フレームでの個体追跡結果との類似度の閾値を表す．閾値をこえた場合はそれまで推定に用いてきた特徴情報を捨てて，新たに特徴情報を取得する．</p>
-</li>
-<li><p class="first">Restart from this frame</p>
-<p>追跡ミスを修正したあとに押すボタン．ボタンが押すと，修正を反映して現在のビデオ再生位置から個体追跡をやり直すことができる．</p>
-</li>
-<li><p class="first">Set/Reset</p>
-<p>上記で設定したパラメタを適用して新たに個体追跡を開始するボタン．パラメタ変更後や個体追跡をやり直したいときに押すと，ビデオが開始位置に巻き戻される．これまでの追跡結果は破棄される．</p>
-</li>
-</ol>
+<p>個体数など，トラッキングで使用する値を変更する．設定可能なパラメタはトラッキングアルゴリズムより異なる．</p>
 </li>
 <li><p class="first">結果表示設定画面</p>
 <p>個体追跡結果の表示の詳細を設定する項目．</p>
@@ -600,282 +555,14 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 </div>
 <div class="section" id="load-the-video-and-its-filter-data">
 <span id="load-the-video-and-its-filter-data"></span><h3>1.4.2. Load the Video and its Filter data<a class="headerlink" href="#load-the-video-and-its-filter-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>個体追跡を行うには，はじめに解析対象の動画と前述の<strong>UMATracker-FilterGenerator</strong>で作成したフィルタデータをドラッグ&amp;ドロップで読み込む．</p>
-<p><img alt="txt" src="../_images/uma_tracking_loaddata.png" /></p>
+<p>はじめに解析対象の動画と前述の<strong>UMATracker-FilterGenerator</strong>で作成したフィルタデータをドラッグ&amp;ドロップで読み込む．
+<img alt="txt" src="../_images/uma_tracking_loadvideo.png" />
+<img alt="txt" src="../_images/uma_tracking_loadfilter.png" /></p>
 </div>
-<div class="section" id="set-tracking-parameter">
-<span id="set-tracking-parameter"></span><h3>1.4.3. Set Tracking Parameter<a class="headerlink" href="#set-tracking-parameter" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="set-the-parameter">
+<span id="set-the-parameter"></span><h3>1.4.3. Set the Parameter<a class="headerlink" href="#set-the-parameter" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>つぎに個体追跡に必要なパラメタを個体追跡パラメタ設定画面で設定する．</p>
 <p><img alt="txt" src="../_images/uma_tracking_setparameter.png" /></p>
-<p>つぎに個体追跡に必要なパラメタを個体追跡パラメタ設定画面で設定する．
-デフォルトで使用されるGroupTracker GMMでは追跡物体数(<code class="docutils literal"><span class="pre">#</span> <span class="pre">of</span> <span class="pre">objects</span></code>)を指定し，<code class="docutils literal"><span class="pre">Set/Reset</span></code>ボタンを押すと，個体追跡結果画面に個体位置を示す円と個体番号が表示される．</p>
-</div>
-<div class="section" id="execute-object-tracking">
-<span id="execute-object-tracking"></span><h3>1.4.4. Execute Object Tracking<a class="headerlink" href="#execute-object-tracking" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>初期状態で正しく追跡物体位置が推定されているのを確認したあとビデオの再生を開始すると，ビデオの再生に併せて個体追跡が実行される．</p>
-<div class="admonition note">
-<p class="first admonition-title">注釈</p>
-<p class="last">Run/Run Object Trackingメニューにより，ビデオの再生なしに個体追跡をおこなうこともできる．</p>
-</div>
-</div>
-<div class="section" id="fix-mis-detection">
-<span id="fix-mis-detection"></span><h3>1.4.5. Fix Mis-Detection<a class="headerlink" href="#fix-mis-detection" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>ノイズなどの影響により，正しく個体追跡が行われなかったりエラーメッセージが出たりして個体追跡が破綻してしまうことがある．そのようなときは，破綻がおこったビデオ再生位置までビデオを巻き戻し，個体追跡結果画面の追跡結果をドラッグアンドドロップで修正する．そして<code class="docutils literal"><span class="pre">Restart</span> <span class="pre">from</span> <span class="pre">this</span> <span class="pre">frame</span></code>ボタンを押すことで修正後の状態から個体追跡を再開することができる．</p>
-<div class="admonition note">
-<p class="first admonition-title">注釈</p>
-<p class="last">追跡個体の入れ替わりや追跡結果のずれなど個体追跡が破綻していない場合は，次節のTrackingCorrectrで修正可能なので個体追跡中に修正を行う必要はない．</p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">注釈</p>
-<p class="last">全ての個体追跡の破綻に対応することができるわけではない．そのような場合は，前節で作成したフィルタを修正する必要がある．</p>
-</div>
-</div>
-<div class="section" id="save-tracking-data">
-<span id="save-tracking-data"></span><h3>1.4.6. Save Tracking Data<a class="headerlink" href="#save-tracking-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">Files/Save</span> <span class="pre">Data</span></code>メニューより，個体追跡によって得られた座標データを保存することができる．</p>
-<ol>
-<li><p class="first">ビデオの情報</p>
-<p>FPSなど，読み込まれたビデオの詳細情報がテキストファイルとして保存される．</p>
-</li>
-<li><p class="first">個体追跡結果</p>
-<p>保存される追跡結果は個体追跡アルゴリズムに依存する．GroupTracker GMMでは個体追跡結果のデータが，ビデオフレーム番号を行・各個体の座標を列に持つCSVとして保存される．追跡結果表示画面に表示されている個体番号の順に各個体の座標が並ぶようになっている．
-<img alt="txt" src="../_images/uma_tracking_outputcsv.png" /></p>
-</li>
-</ol>
-</div>
-</div>
-<div class="section" id="umatracker-trackingcorrector">
-<span id="umatracker-trackingcorrector"></span><h2>1.5. UMATracker-TrackingCorrector<a class="headerlink" href="#umatracker-trackingcorrector" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>個体追跡において多くの場合で追跡ミスが起こるため，正しい追跡結果を得るためには追跡ミスの修正行程が必要になる．<strong>UMATracker-TrackingCorrector</strong>を使うことで，追跡ミスの修正を簡単に行うことができる．</p>
-<div class="section" id="trackingcorrector-window">
-<span id="trackingcorrector-window"></span><h3>1.5.1. TrackingCorrector Window<a class="headerlink" href="#trackingcorrector-window" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>以下に<strong>UMATracker-TrackingCorrector</strong>の画面各部の名称および説明を示す．</p>
-<p><img alt="txt" src="../_images/uma_trackingcorrector_mainwindow.png" /></p>
-<ol>
-<li><p class="first">個体追跡結果表示画面</p>
-<p>個体追跡結果を表示する画面．結果表示画面上で範囲選択することで，範囲選択された部分が右側の追跡結果画面に拡大表示される．</p>
-</li>
-<li><p class="first">追跡結果拡大画面
-結果表示画面において範囲選択された部分が拡大表示される．追跡結果を表す円を右クリックすると円が四角形に変化し，その個体の追跡データが選択状態になる．2個体の追跡データを選択状態にすると<code class="docutils literal"><span class="pre">Swap</span></code>ボタンが現れる．<code class="docutils literal"><span class="pre">Swap</span></code>ボタンをクリックすると，現在のビデオ再生位置以降の2つの個体の追跡データが入れ替わる．</p>
-</li>
-<li><p class="first">結果表示設定画面</p>
-<p>個体追跡結果の表示の詳細を設定する項目．</p>
-<ul>
-<li><p class="first">Path Length</p>
-<p>前後何フレーム分の軌跡を結果画面に表示するかを設定する．</p>
-</li>
-<li><p class="first">Radius</p>
-<p>結果画面に表示される個体位置を表す点の大きさを設定する．</p>
-</li>
-<li><p class="first">Mark Interval</p>
-<p>目印の間隔の大きさを設定する．
-各個体の追跡結果の軌跡に対して，ここで指定された間隔毎に黒点がうたれる．</p>
-</li>
-</ul>
-</li>
-<li><p class="first">Change the Order of Individual Numbers</p>
-<p>各個体に割り当てられている番号を入れ替えるための番号．
-このメニューをクリックするとダイアログが表示され，入れ替えたい個体番号を指定し<code class="docutils literal"><span class="pre">Swap</span></code>ボタンを押すと個体番号が入れ替わる．
-<img alt="txt" src="../_images/uma_trackingcorrector_swapdatanum.png" /></p>
-</li>
-</ol>
-</div>
-<div class="section" id="data-correction">
-<span id="data-correction"></span><h3>1.5.2. Data Correction<a class="headerlink" href="#data-correction" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>つぎに実際の修正工程について説明する．
-まずは，解析対象のビデオと前述の<strong>UMATracker-Tracking</strong>によって得られた追跡データを
-ドラッグアンドドロップで<strong>UMATracker-TrackingCorrector</strong>に読み込ませる．
-つぎに，軌跡の変化を把握しやすくするため<code class="docutils literal"><span class="pre">Path</span> <span class="pre">Length</span></code>など表示の調整項目を調整し，
-再生しながら目視で追跡ミスを探す．</p>
-<div class="section" id="zoom-up">
-<span id="zoom-up"></span><h4>1.5.2.1. Zoom Up<a class="headerlink" href="#zoom-up" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>拡大機能を用いることで，追跡ミスが起きていそうなところを詳細に見ることができる．
-左側の結果表示画面でドラッグアンドドロップにより範囲選択を行うと，右側の拡大画面に範囲選択した領域が拡大表示される．</p>
-<p><img alt="txt" src="../_images/uma_trackingcorrector_zoom.png" /></p>
-</div>
-<div class="section" id="fix-the-position-aberration">
-<span id="fix-the-position-aberration"></span><h4>1.5.2.2. Fix the Position Aberration<a class="headerlink" href="#fix-the-position-aberration" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>追跡ミスを見つけたら，右側の拡大画面でマーカーをドラッグアンドドロップすることで修正することができる．</p>
-<p><img alt="txt" src="../_images/uma_trackingcorrector_fixdata.png" /></p>
-</div>
-<div class="section" id="correct-the-data-swapping">
-<span id="correct-the-data-swapping"></span><h4>1.5.2.3. Correct the Data Swapping<a class="headerlink" href="#correct-the-data-swapping" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>入れ替わりを見つけたら，入れ替わりが起こったビデオの再生位置を探す．
-入れ替わりが起こった再生位置を見つけたら，右側の拡大画面において入れ替わった2個体のマーカーをそれぞれ右クリックで選択する．
-すると<code class="docutils literal"><span class="pre">Swap</span></code>メニューが表示されるので，それをクリックすると入れ替わりが解消される．</p>
-<p><img alt="txt" src="../_images/uma_trackingcorrector_selectandswap.png" /></p>
-</div>
-<div class="section" id="save-data">
-<span id="save-data"></span><h4>1.6.5. Save Data<a class="headerlink" href="#save-data" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>修正が完了したら，<code class="docutils literal"><span class="pre">Files/Save</span> <span class="pre">Data</span></code>メニューを選択して修正結果を保存する．</p>
-</div>
-</div>
-</div>
-<div class="section" id="umatracker-area51">
-<span id="umatracker-area51"></span><h2>1.6. UMATracker-Area51<a class="headerlink" href="#umatracker-area51" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><strong>UMATracker-Area51</strong>を使うことで，個体追跡結果を解析することができる．
-具体的には，解析に使用したビデオの画面上に領域・直線・点といったオブジェクトを配置することで
-解析を行う．</p>
-<ul>
-<li><p class="first">領域オブジェクト</p>
-<p>直線領域を配置することにより，各個体からこの直線オブジェクトへの距離を算出することができる．
-たとえば下図において，領域１（青）・領域２（赤）という二つの領域をビデオ上に配置する（左図）ことで，
-各個体がいた領域の時間変化をダイアグラムとしてプロットすることができる（右図）．
-<img alt="txt" src="../_images/uma_area51_regionobject.png" /></p>
-</li>
-<li><p class="first">直線オブジェクト</p>
-<p>直線オブジェクトを配置することにより，各個体からこの直線オブジェクトへの距離を算出することができる．
-たとえば下図において，赤い直線をビデオ上に配置する（左図）ことで，各個体から赤い直線への距離の時間変化を
-プロットすることができる（右図）．
-<img alt="txt" src="../_images/uma_area51_lineobject.png" /></p>
-</li>
-<li><p class="first">点オブジェクト
-点オブジェクトを配置することにより，各個体からこの点オブジェクトへの距離を算出することができる．
-たとえば下図において，赤い点をビデオ上に配置する（左図）ことで，各個体から赤い点への距離の時間変化を
-プロットすることができる（右図）．
-<img alt="txt" src="../_images/uma_area51_pointobject.png" /></p>
-</li>
-</ul>
-<p>また，<strong>UMATracker-Area51</strong>では個体間距離を基準とした個体間インタラクション解析を行うこともできる．</p>
-<p><img alt="txt" src="../_images/uma_area51_interactionexample.png" /></p>
-<div class="section" id="area51-window">
-<span id="area51-window"></span><h3>1.6.1. Area51 Window<a class="headerlink" href="#area51-window" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>以下に<strong>UMATracker-Area51</strong>の画面各部の名称および説明をしめす．
-<img alt="txt" src="../_images/uma_area51_mainwindow.png" /></p>
-<ol>
-<li><p class="first">個体追跡結果/オブジェクト表示画面</p>
-<p>入力動画と個体追跡結果，およびユーザーによって追加されたオブジェクトを表示する．</p>
-</li>
-<li><p class="first">オブジェクトリストテーブル</p>
-<p>オブジェクトの固有名・色・種類を設定する画面．</p>
-<ul>
-<li><p class="first">Name列</p>
-<p>行に対応するオブジェクトの名称を表示する．
-この列の要素をダブルクリックするとプルダウンメニューが表示され，ダブルクリックした要素の行に対応するオブジェクトの名称を変更できる．</p>
-</li>
-<li><p class="first">Color列</p>
-<p>行に対応するオブジェクトの表示色を表示する．
-この列の要素をダブルクリックするとプルダウンメニューが表示され，ダブルクリックした要素の行に対応するオブジェクトの表示色を変更できる．</p>
-</li>
-<li><p class="first">Type列</p>
-<p>行に対応するオブジェクトのタイプを表示する．
-この列の要素をダブルクリックするとプルダウンメニューが表示され，ダブルクリックした要素の行に対応するオブジェクトの種類を変更できる．</p>
-</li>
-</ul>
-</li>
-<li><p class="first">オブジェクト追加/削除/優先順位変更ボタン</p>
-<ul>
-<li><p class="first">+/- Button</p>
-<p>オブジェクトを追加/削除するためのボタン．</p>
-</li>
-<li><p class="first">Up/Down 矢印ボタン</p>
-<p>オブジェクトの優先順位の入れ替えを行う．オブジェクトの優先順位に関しては後述する．</p>
-</li>
-</ul>
-</li>
-<li><p class="first">Radiusパラメタ入力ボックス</p>
-<p>結果表示画面に表示された各個体を表す円マーカーの半径を設定する入力ボックス．
-この値は個体間インタラクションを算出するときに用いられる（後述）．</p>
-</li>
-</ol>
-</div>
-<div class="section" id="load-the-video-and-tracking-result">
-<span id="load-the-video-and-tracking-result"></span><h3>1.6.2. Load the Video and Tracking Result<a class="headerlink" href="#load-the-video-and-tracking-result" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>解析に使用するビデオとその個体追跡結果データを，メインウインドウにドラックアンドドロップして読み込ませる．</p>
-</div>
-<div class="section" id="add-and-select-object">
-<span id="add-and-select-object"></span><h3>1.6.3. Add and Select Object<a class="headerlink" href="#add-and-select-object" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>次に，解析に使用するオブジェクトを追加する．
-画面右下の+ Buttonを押すとオブジェクトリストテーブルにオブジェクトが追加され，個体追跡結果/オブジェクト表示画面上にオブジェクトが表示される．
-<img alt="txt" src="../_images/uma_area51_addobject.png" /></p>
-<p>オブジェクトの種類は，Distance Calculation Object TypeとRegion of Interest (RoI) Object Typeの2つのグループに分けることができる．
-以下の通りDistance Calculation Object Typeのオブジェクトは2種類，Region of Interest Object Typeのオブジェクトは3種類存在する．</p>
-<ol class="simple">
-<li>Disntance Calculation Object Type<ul>
-<li>Point Object</li>
-<li>Line Object</li>
-</ul>
-</li>
-<li>Region of Interest (RoI) Object Type<ul>
-<li>Rectangular Object</li>
-<li>Ellipse Object</li>
-<li>Polygon Object</li>
-</ul>
-</li>
-</ol>
-<p>オブジェクトリストテーブルに表示されたオブジェクト行のType列をダブルクリックすると，プルダウンメニューが表示されてオブジェクトを変更することができる．</p>
-<p><img alt="txt" src="../_images/uma_area51_selectobjecttype.png" /></p>
-<p>オブジェクトリストテーブルに表示されたオブジェクト行のColor列をダブルクリックすると，プルダウンメニューが表示されてオブジェクトの色を変更することができる．</p>
-<p><img alt="txt" src="../_images/uma_area51_selectcolor.png" /></p>
-<div class="admonition warning">
-<p class="first admonition-title">警告</p>
-<p class="last">各セルに加えた変更は，セルの選択を解除しなければ反映されない．セルに変更を加えた後は，他のセルを選択するなどしてセルの選択を解除することすること．</p>
-</div>
-<p>オブジェクトリストテーブルには複数のオブジェクトを追加することができる．
-オブジェクトリストテーブル上のオブジェクトの並びはオブジェクトの順位をあらわしており，順位の低い順にオブジェクトが個体追跡結果/オブジェクト表示画面へ描画される．
-オブジェクトの順序は画面右下の上下ボタンにより変更することができる．</p>
-<div class="admonition warning">
-<p class="first admonition-title">警告</p>
-<p>オブジェクトが他のオブジェクトに隠れてしまうことで，オブジェクトを移動させることが出来なくなる場合がある．そのような場合，オブジェクトリストテーブル上でオブジェクトを選択し画面右下の上下ボタンを押してオブジェクトの順位を変更することで対応する．</p>
-<img alt="../_images/uma_area51_swaprow.png" class="last" src="../_images/uma_area51_swaprow.png" />
-</div>
-</div>
-<div class="section" id="data-analysis">
-<span id="data-analysis"></span><h3>1.6.4. Data Analysis<a class="headerlink" href="#data-analysis" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>Distance Calculation Object Typeのオブジェクトを用いたDistance from a Point/Line Analysisと，Region of Interests Object Typeのオブジェクトを用いたRegion of Interests Analysisの二種類の解析を行うことが出来る．以下，それぞれの解析手法に関して操作手順を説明する．</p>
-<div class="section" id="distance-from-a-point-line-analysis">
-<span id="distance-from-a-point-line-analysis"></span><h4>1.6.4.1. Distance from a Point/Line Analysis<a class="headerlink" href="#distance-from-a-point-line-analysis" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>本解析では，個体追跡結果/オブジェクト表示画面上に配置されたPoint ObjectもしくはLine Objectから，各個体への距離を算出することが出来る．</p>
-<p>まず始めに，画面右下の+ Buttonを押してObjectを追加する．
-ある地点から各個体への距離を算出したい場合はPoint Objectを，ある直線から各個体への距離を算出したい場合はLine Objectを，
-追加したオブジェクトのType列をダブルクリックすると表示されるプルダウンメニューから選択する．</p>
-<ol>
-<li><p class="first">Point Object</p>
-<p>このオブジェクトを選択すると，個体追跡結果/オブジェクト表示画面に四角の点が表示される．
-四角の点をドラッグアンドドロップすることで，このオブジェクトの位置を変更できる．
-<code class="docutils literal"><span class="pre">Run/Calculate</span></code>メニューを選択すると，このオブジェクトと各個体間の距離が算出される．</p>
-</li>
-<li><p class="first">Line Object</p>
-<p>このオブジェクトを選択すると，個体追跡結果/オブジェクト表示画面に直線が表示される．
-オブジェクトの両端に表示された端点をドラッグアンドドロップすることで直線の端の位置を変更できる．
-また，表示された直線をドラッグアンドドロップすることで直線全体の位置を変更できる．
-<code class="docutils literal"><span class="pre">Run/Calculate</span></code>メニューを選択すると，配置されたLine Objectから各個体への最短距離が算出される．
-2次元空間上の座標を<span class="math">\((x, y)\)</span>であらわし，そこに配置されたLine Objectをあらわす直線の式を<span class="math">\(ax + by + c = 0\)</span>であるとする．このとき，各固体の位置<span class="math">\((x_i, y_i)\)</span>から直線への最短距離は<span class="math">\(|ax_i + by_i +c|/\sqrt{a^2 + b^2}\)</span>となる．</p>
-</li>
-</ol>
-<p>個体追跡結果/オブジェクト表示画面上に表示されたオブジェクトをドラッグアンドドロップすることで，位置や形状を変更することが出来る．</p>
-<p><code class="docutils literal"><span class="pre">Run/Calculate</span></code>メニューを選択することで，配置されたそれぞれのオブジェクトから各個体への距離を算出することができる．
-各オブジェクトごとにウィンドウが表示され，各オブジェクトに対して算出されたデータがLine Plotとして表示される．</p>
-<p>解析結果は横軸がビデオフレーム番号，縦軸がオブジェクトからの距離のLine Plotで表示される．
-解析結果を表示するウインドウの名称は，解析対象オブジェクトの名称が表示される．</p>
-<p><img alt="txt" src="../_images/uma_area51_distancewindow.png" /></p>
-</div>
-<div class="section" id="region-of-interests-analysis">
-<span id="region-of-interests-analysis"></span><h4>1.6.4.2. Region of Interests Analysis<a class="headerlink" href="#region-of-interests-analysis" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>本解析では，各個体が画面上のどの位置に居たのかを算出することが出来る．
-この解析は，個体追跡結果/オブジェクト表示画面上にRoI Objectを配置し，
-そのRoI Objectの領域に個体が存在しているかを算出することで行われる．</p>
-<p>まず始めに，画面右下の+ Buttonを押してObjectを追加する．
-RoI ObjectにはRectangular Object, Ellipse Object Polygon Objectの三種類が存在し，
-解析したい領域に合わせて選択する．
-個体追跡結果/オブジェクト表示画面上に表示されたオブジェクトはドラッグアンドドロップすることで位置を変更でき，
-白四角をドラッグアンドドロップすることで形状を変更することが出来る．</p>
-<p>追加したオブジェクトを注目したい領域に合わせたあと<code class="docutils literal"><span class="pre">Run/Calculate</span></code>メニューを選択することで，各時刻における固体の位置を算出することができ，
-ダイアグラムとして可視化される．
-出力されたダイアグラムの横軸は時刻（ビデオフレーム番号）・縦軸は各個体の番号をあらわす．
-ダイアグラムの色はRoI Objectの色に対応しており，各個体が各時間に滞在したRoI Objectをあらわす．</p>
-<p><img alt="txt" src="../_images/uma_area51_roioutput.png" /></p>
-<div class="admonition warning">
-<p class="first admonition-title">警告</p>
-<p>RoI Objectを重ねて配置するときは注意が必要である．個体が複数のRoI Object上に存在するときは，そのRoI Objectのなかでもっとも順位の高いオブジェクト上に存在すると判定される．たとえば，</p>
-<img alt="../_images/uma_area51_roiexample1.png" src="../_images/uma_area51_roiexample1.png" />
-<p>のようにRoI Objectを重ねて配置したとき，RoI Objectの順位によってA, Bのように出力が変わる．</p>
-<img alt="../_images/uma_area51_roiexample2.png" class="last" src="../_images/uma_area51_roiexample2.png" />
-</div>
-</div>
-</div>
-<div class="section" id="save-data">
-<span id="id1"></span><h3>1.6.5. Save Data<a class="headerlink" href="#save-data" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">Files/Save</span> <span class="pre">Data</span></code>メニューを選択して解析結果を保存することができる．</p>
 </div>
 </div>
 </div>

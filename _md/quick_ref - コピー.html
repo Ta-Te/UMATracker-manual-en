@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UMATracker Quick Start Guide &mdash; UMATracker 1.0 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="UMATracker 1.0 ドキュメント" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> UMATracker
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="quick_ref.html">1. UMATracker Quick Start Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">UMATracker</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>UMATracker Quick Start Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/_md/quick_ref - コピー.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="umatracker-quick-start-guide">
+<span id="umatracker-quick-start-guide"></span><h1>UMATracker Quick Start Guide<a class="headerlink" href="#umatracker-quick-start-guide" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="summary">
+<span id="summary"></span><h2>Summary<a class="headerlink" href="#summary" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><strong>UMATracker</strong>は個体追跡，およびその結果の解析を提供するソフトウェア群である．</p>
+<p><strong>UMATracker</strong>は,</p>
+<ul class="simple">
+<li><strong>UMATracker-FilterGenerator</strong></li>
+<li><strong>UMATracker-Tracking</strong></li>
+<li><strong>UMATracker-TrackingCorrector</strong></li>
+<li><strong>UMATracker-Area51</strong></li>
+</ul>
+<p>という4つのソフトウェアに別れており，各ソフトウェアを組み合わせることで動画の前処理・個体追跡・結果の修正・結果の解析を行うことが出来る．</p>
+<div class="section" id="umatracker-can-do">
+<span id="umatracker-can-do"></span><h3>UMATracker Can Do<a class="headerlink" href="#umatracker-can-do" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>ブロックの組み合わせによる解析動画の下処理（<strong>UMATracker-FilterGenerator</strong>）．</li>
+<li>追跡対象の個体数が常に一定なビデオを使った個体追跡（<strong>UMATracker-Tracking</strong>）．</li>
+<li>追跡対象の骨格・形状・向きの推定（<strong>UMATracker-Tracking</strong>）．</li>
+<li>個体追跡結果の修正（<strong>UMATracker-TrackingCorrector</strong>）．</li>
+<li>Region-Of-Interest・個体間インタラクションなど，追跡結果の解析（<strong>UMATracker-Area51</strong>）．</li>
+</ul>
+</div>
+<div class="section" id="umatracker-cannot-do-currently">
+<span id="umatracker-cannot-do-currently"></span><h3>UMATracker Cannot Do (Currently)<a class="headerlink" href="#umatracker-cannot-do-currently" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>追跡対象の個体数が増減するビデオをつかった個体追跡．</li>
+<li><strong>UMATracker-FilterGenerator</strong>による前処理によって追跡対象を抽出できない場合の個体追跡．</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">現状出来ないことに関しても，プラグインを作成・使用することで対応可能となっている．本件に関してはプラグイン作成マニュアルで別途触れる．</p>
+</div>
+<p>本Quick Start Guideでは個体追跡に絞って使用方法を解説する．</p>
+</div>
+</div>
+<div class="section" id="workflow">
+<span id="workflow"></span><h2>Workflow<a class="headerlink" href="#workflow" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><img alt="txt" src="../_images/uma_summary_sequence.png" /></p>
+<p><strong>UMATracker</strong>による個体追跡は,</p>
+<ol class="simple">
+<li><strong>UMATracker-FilterGenerator</strong>で動画の下処理のためのフィルタを作成し，</li>
+<li><strong>UMATracker-Tracking</strong>において<strong>UMATracker-FilterGenerator</strong>で作成したフィルタを用いて個体追跡を行い，</li>
+<li><strong>UMATracker-TrackingCorrector</strong>を使って，<strong>UMATracker-Tracking</strong>で得られた個体追跡結果を修正し，</li>
+<li><strong>UMATracker-Area51</strong>をもちいて追跡結果の解析を行う</li>
+</ol>
+<p>という流れになっている．</p>
+</div>
+<div class="section" id="umatracker-filtergenerator">
+<span id="umatracker-filtergenerator"></span><h2>UMATracker-FilterGenerator<a class="headerlink" href="#umatracker-filtergenerator" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>個体追跡を行いたい動画に対して前処理として画像フィルタをかけて個体の位置を抽出することで，個体追跡の精度を高めることが出来る．
+そこでまず<strong>UMATracker-FilterGenerator</strong>を使用し，ブロックを組み合わせることで画像フィルタを作成する．</p>
+<div class="section" id="filtergenerator-window">
+<span id="filtergenerator-window"></span><h3>FilterGenerator Window<a class="headerlink" href="#filtergenerator-window" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下に<strong>UMATracker-FilterGenerator</strong>の画面各部の名称および説明を示す．
+<img alt="txt" src="../_images/uma_filtergenerator_mainwindow.png" /></p>
+<ol>
+<li><p class="first">フィルタツールチップ</p>
+<p>利用出来るブロックの一覧が表示されるツールチップ．入力画像を変化させる画像フィルタが各ブロックに割り当てらており，
+ブロックを組み合わせることで個体を抽出するような画像フィルタを作成する．</p>
+</li>
+<li><p class="first">フィルタブロック</p>
+<p>このブロックをドラッグ・アンド・ドロップし，ブロックをつなぎ合わせることで個体を抽出する画像フィルタを作成する．</p>
+</li>
+<li><p class="first">キャンバス</p>
+<p>フィルタブロックを配置し，フィルタ群を作成する場所．</p>
+</li>
+<li><p class="first">入力画面</p>
+<p>入力動画が表示される．</p>
+</li>
+<li><p class="first">出力画面</p>
+<p>入力した動画に対してキャンバスに設置したフィルタを適応した結果が表示される．</p>
+</li>
+<li><p class="first">Background生成メニュー</p>
+<p>入力動画の背景を抽出し，除去する．</p>
+</li>
+</ol>
+</div>
+<div class="section" id="filter-block-operation">
+<span id="filter-block-operation"></span><h3>Filter Block Operation<a class="headerlink" href="#filter-block-operation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>上述のキャンバス上でブロックを組み合わせることで，画像フィルタを作成する．
+本節ではブロックの操作方法について説明する．</p>
+<div class="section" id="initial-block-state">
+<span id="initial-block-state"></span><h4>Initial Block State<a class="headerlink" href="#initial-block-state" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><img alt="txt" src="../_images/uma_filtergenerator_initblock.png" /></p>
+<p>起動時には<code class="docutils literal"><span class="pre">Output</span></code>ブロックと<code class="docutils literal"><span class="pre">Input</span></code>ブロックのみがキャンバス上に表示される．
+<code class="docutils literal"><span class="pre">Input</span></code>はソフトウェアに読み込ませた動画像のことを指しており，上述の『入力画面』に表示されている動画像のことである．</p>
+<p>そして，<code class="docutils literal"><span class="pre">Output</span></code>ブロックに接続されたブロックのデータが上述の『出力画面』に表示される．
+この例では<code class="docutils literal"><span class="pre">Input</span></code>ブロックが<code class="docutils literal"><span class="pre">Output</span></code>ブロックに直接接続されているので，<code class="docutils literal"><span class="pre">Input</span></code>ブロックのデータ，すなわち『入力画面』に表示された動画像が
+『出力画面』に表示される．
+<code class="docutils literal"><span class="pre">Input</span></code>ブロックと<code class="docutils literal"><span class="pre">Output</span></code>ブロックの間に各フィルタを意味するブロックを複数挟み込むことで画像フィルタを表現することが出来る．</p>
+</div>
+<div class="section" id="add-block">
+<span id="add-block"></span><h4>Add Block<a class="headerlink" href="#add-block" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>キャンバス上のブロック群へブロックを追加するには，フィルタツールチップからブロックをドラック＆ドロップすればよい．
+<img alt="txt" src="../_images/uma_filtergenerator_blockadding.png" />
+<img alt="txt" src="../_images/uma_filtergenerator_blockadded.png" /></p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">ドラッグ＆ドロップではなく，フィルタツールチップ上でフォーカス中に右クリックすることでもフィルタを追加することができる．</p>
+</div>
+<p>たとえばフィルタツールチップ<code class="docutils literal"><span class="pre">Filters</span></code>内の<code class="docutils literal"><span class="pre">BGRToGray</span></code>を追加すると，『出力画面』が『入力画面』のグレースケールへ変化する．
+このことから<code class="docutils literal"><span class="pre">BGRToGray</span></code>がグレースケールフィルタを意味していることがわかる．</p>
+<p><img alt="txt" src="../_images/uma_filtergenerator_dataflow.png" /></p>
+<p>このとき入出力は，</p>
+<ol class="simple">
+<li>『入力画面』に表示された動画像が<code class="docutils literal"><span class="pre">Input</span></code>ブロックを通して，</li>
+<li><code class="docutils literal"><span class="pre">BGRToGray</span></code>ブロックに入力される．このブロックが入力されたデータをグレースケール動画像へ変換し，</li>
+<li>変換後の動画像が<code class="docutils literal"><span class="pre">Output</span></code>ブロックに入力される．</li>
+<li>そして，<code class="docutils literal"><span class="pre">Output</span></code>ブロックに入力された動画像が『出力画面』に反映される．</li>
+</ol>
+<p>という流れとなっている．</p>
+</div>
+<div class="section" id="remove-block">
+<span id="remove-block"></span><h4>Remove Block<a class="headerlink" href="#remove-block" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>不要になったブロックを削除するには，『フィルタツールチップ』もしくは『キャンバス』上のゴミ箱へブロックをドラッグ＆ドロップすれば良い．
+<img alt="txt" src="../_images/uma_filtergenerator_blockremoving.png" /></p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p>Outputブロックとブロックが離れている場合，使われていないブロックがある場合にはエラーとなり，出力が『出力画面』に反映されなくなる．</p>
+<table border="1" class="last docutils" id="id1">
+<caption><span class="caption-text">Error Examples</span><a class="headerlink" href="#id1" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Blocks</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><img alt="../_images/uma_filtergenerator_disconnectedoutputblock.png" class="first last" src="../_images/uma_filtergenerator_disconnectedoutputblock.png" />
+</td>
+<td>ブロックとブロックが離れている場合．</td>
+</tr>
+<tr class="row-odd"><td><img alt="../_images/uma_filtergenerator_unusedblock.png" class="first last" src="../_images/uma_filtergenerator_unusedblock.png" />
+</td>
+<td>使われていないブロックがある場合．</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="block-types">
+<span id="block-types"></span><h4>Block Types<a class="headerlink" href="#block-types" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ブロックは入力/出力があるかで3種類にわけることができる．</p>
+<p><strong>入力/出力ブロックには画像フィルタが割り当てられており，入力ブロックからの動画像をフィルタで変換したものを出力する．</strong></p>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Block I/O Types</span><a class="headerlink" href="#id2" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Block Example</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><img alt="../_images/uma_filtergenerator_inputonlyblock.png" class="first last" src="../_images/uma_filtergenerator_inputonlyblock.png" />
+</td>
+<td>入力ブロック</td>
+<td>入力のみを受け付けるブロック．</td>
+</tr>
+<tr class="row-odd"><td><img alt="../_images/uma_filtergenerator_inputoutputblock.png" class="first last" src="../_images/uma_filtergenerator_inputoutputblock.png" />
+</td>
+<td>入力/出力ブロック</td>
+<td>入力と出力の両方をそなえたブロック．</td>
+</tr>
+<tr class="row-even"><td><img alt="../_images/uma_filtergenerator_outputonlyblock.png" class="first last" src="../_images/uma_filtergenerator_outputonlyblock.png" />
+</td>
+<td>出力ブロック</td>
+<td>出力のみをもつブロック．</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="how-to-make-your-own-filter">
+<span id="how-to-make-your-own-filter"></span><h3>How to Make your own Filter<a class="headerlink" href="#how-to-make-your-own-filter" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><img alt="txt" src="../_images/uma_filtergenerator_processed.png" />
+<strong>UMATracker-FilterGenerator</strong>では，個体追跡したい物体の場所が白くなるフィルタを作成することが目標である．上図ではアリのいた場所のみ白くなっていることがわかる．
+そのためには</p>
+<ol class="simple">
+<li>グレースケール変換</li>
+<li>二値化</li>
+<li>解析に不要な領域の除去</li>
+<li>ノイズ除去</li>
+</ol>
+<p>という手順をふむ必要がある．</p>
+<p><img alt="txt" src="../_images/uma_filtergenerator_filtermakingsequence.png" /></p>
+<div class="section" id="open-the-video-file">
+<span id="open-the-video-file"></span><h4>Open the Video File<a class="headerlink" href="#open-the-video-file" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>メニューより<code class="docutils literal"><span class="pre">Files/Open</span> <span class="pre">Video</span> <span class="pre">File</span></code>を選択，もしくはビデオファイルをウインドウにドラッグアンドドロップすることで解析に使用するビデオを読み込む．
+<img alt="txt" src="../_images/uma_filtergenerator_openfile.png" /></p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">ファイルサイズが大きい（GB単位），もしくは長時間のビデオ（15分以上）を読み込むとソフトウェアの動作が遅くなる場合がある．そのような時はビデオを扱う場合は事前にエンコード・動画の分割を行うと解決される．</p>
+</div>
+</div>
+<div class="section" id="generate-background">
+<span id="generate-background"></span><h4>Generate Background<a class="headerlink" href="#generate-background" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>メニューより<code class="docutils literal"><span class="pre">Background/Create</span> <span class="pre">Background</span></code>を選択すると，バックグラウンド生成画面が表示される．</p>
+</div>
+<div class="section" id="color-filtering">
+<span id="color-filtering"></span><h4>Color Filtering<a class="headerlink" href="#color-filtering" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">ColorFilter</span><a class="headerlink" href="#id3" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Block</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><img alt="../_images/uma_filtergenerator_colorfilter.png" class="first last" src="../_images/uma_filtergenerator_colorfilter.png" />
+</td>
+<td>右のカラーパレットで色を選択し左の類似度（数値）を調整することで色を選択する．</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="txt" src="../_images/uma_filtergenerator_colorfilterio.png" /></p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">ColorFilterブロックを選択後，『入力画面』上の抽出したい色の部分をクリックすることで色を選択することもできる．</p>
+</div>
+<iframe width="640" height="360" src="//www.youtube.com/embed/3ktUtdCrQzk?feature=player_detailpage" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+<div class="section" id="convert-to-gray-scale">
+<span id="convert-to-gray-scale"></span><h4>Convert to Gray Scale<a class="headerlink" href="#convert-to-gray-scale" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</div>
+<div class="section" id="binalize">
+<span id="binalize"></span><h4>Binalize<a class="headerlink" href="#binalize" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</div>
+<div class="section" id="exclude-the-obstacle-by-the-region-selector">
+<span id="exclude-the-obstacle-by-the-region-selector"></span><h4>Exclude the Obstacle by the Region Selector<a class="headerlink" href="#exclude-the-obstacle-by-the-region-selector" title="このヘッドラインへのパーマリンク">¶</a></h4>
+</div>
+<div class="section" id="noise-reduction">
+<span id="noise-reduction"></span><h4>Noise Reduction<a class="headerlink" href="#noise-reduction" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><img alt="txt" src="../_images/uma_filtergenerator_noisereduction.png" /></p>
+</div>
+<div class="section" id="save-filter-data">
+<span id="save-filter-data"></span><h4>Save Filter Data<a class="headerlink" href="#save-filter-data" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>メニューより<code class="docutils literal"><span class="pre">Files/Save</span> <span class="pre">Filter</span> <span class="pre">Data</span></code>を選択することでフィルタデータ（拡張子<code class="docutils literal"><span class="pre">.filter</span></code>）が保存される．</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Gray Scale変換・Binalizeを行っていない場合は個体追跡に失敗するので，保存前にGray Scale変換・Binalizeが行われていることを確認すること．</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Rito Takeuchi.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
