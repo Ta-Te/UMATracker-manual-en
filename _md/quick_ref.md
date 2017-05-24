@@ -1,118 +1,112 @@
 # UMATracker Quick Start Guide
 ## Summary
-**UMATracker**は個体追跡，およびその結果の解析を提供するソフトウェア群である．
+**UMATracker** is the animal tracking software.
 
-**UMATracker**は,
+**UMATracker** consists of
 
 * **UMATracker-FilterGenerator**
 * **UMATracker-Tracking**
 * **UMATracker-TrackingCorrector**
 * **UMATracker-Area51**
 
-という4つのソフトウェアに別れており，各ソフトウェアを組み合わせることで動画の前処理・個体追跡・結果の修正・結果の解析を行うことが出来る．
+It is possible to perform the video pre-processing, the individual animal tracking, the result correction and the analysis of tracking results.
 
 ### UMATracker Can Do
-* ブロックの組み合わせによる解析動画の下処理（**UMATracker-FilterGenerator**）．
-* 追跡対象の個体数が常に一定なビデオを使った個体追跡（**UMATracker-Tracking**）．
-* 追跡対象の骨格・形状・向きの推定（**UMATracker-Tracking**）．
-* 個体追跡結果の修正（**UMATracker-TrackingCorrector**）．
-* Region-Of-Interest・個体間インタラクションなど，追跡結果の解析（**UMATracker-Area51**）．
+* Video pre-processing by visual programming. (**UMATracker-FilterGenerator**)
+* Individual animal tracking that number of individuals is constant. (**UMATracker-Tracking**)
+* Skeleton, shape and orientation estimation. (**UMATracker-Tracking**)
+* Tracking result correction. (**UMATracker-TrackingCorrector**)
+* Tracking result analysis such as Region-Of-Interest, inter-individual interaction, etc. (**UMATracker-Area51**)
 
 ### UMATracker Cannot Do (Currently)
-* 追跡対象の個体数が増減するビデオをつかった個体追跡．
-* **UMATracker-FilterGenerator**による前処理によって追跡対象を抽出できない場合の個体追跡．
-```eval_rst
-.. note:: 現状出来ないことに関しても，プラグインを作成・使用することで対応可能となっている．本件に関してはプラグイン作成マニュアルで別途触れる．
-```
+* Individual animal tracking that number of individuals increase or decrease while tracking.
+* Individual animal tracking that you can not extract individuals by video pre-processing with **UMATracker-FilterGenerator**.
 
-本Quick Start Guideでは個体追跡に絞って使用方法を解説する．
+In this Quick Start Guide, we explain how to use the individual animal tracking and its analysis.
 
 ## Basic Workflow
 ![txt](img/quick/uma_summary_sequence.png)
 
-**UMATracker**による個体追跡は,
+Individual animal tracking by **UMATracker** can do by the following workflow.
 
-1. **UMATracker-FilterGenerator**で動画の下処理のためのフィルタを作成し，
-2. **UMATracker-Tracking**において**UMATracker-FilterGenerator**で作成したフィルタを用いて個体追跡を行い，
-3. **UMATracker-TrackingCorrector**を使って，**UMATracker-Tracking**で得られた個体追跡結果を修正し，
-4. **UMATracker-Area51**をもちいて追跡結果の解析を行う
+1. **UMATracker-FilterGenerator**: Create a filter for the video pre-processing.
+2. **UMATracker-Tracking**: Perform individual tracking using a filter that you created in the **UMATracker-FilterGenerator**.
+3. **UMATracker-TrackingCorrector** Correct the individual tracking results obtained with **UMATracker-Tracking**.
+4. **UMATracker-Area51** Analyse the tracking result.
 
-という流れになっている．
 
 ## UMATracker-FilterGenerator
-個体追跡を行いたい動画に対して前処理として画像フィルタをかけて個体の位置を抽出することで，個体追跡の精度を高めることが出来る．
-そこでまず**UMATracker-FilterGenerator**を使用し，ブロックを組み合わせることで画像フィルタを作成する．
+It is possible to improve the accuracy of the individual tracking by creating the video pre-processing filter.
+At first, use **UMATracker-FilterGenerator** to create an image filter by visual programming.
 
 ### FilterGenerator Window
-以下に**UMATracker-FilterGenerator**の画面各部の名称および説明を示す．
+The following shows the name and description of each part of the screen **UMATracker-FilterGenerator**.
 ![txt](img/quick/uma_filtergenerator_mainwindow.png)
 
-1. フィルタツールチップ
+1. Filter tool tip
 	
-	利用出来るブロックの一覧が表示されるツールチップ．入力画像を変化させる画像フィルタが各ブロックに割り当てらており，
-	ブロックを組み合わせることで個体を抽出するような画像フィルタを作成する．
+	The tool-tip which lists available blocks.
+	We can place a block on Canvas by drag-and-drop.
 
-2. フィルタブロック
+2. Filter block
 	
-	このブロックをドラッグ・アンド・ドロップし，ブロックをつなぎ合わせることで個体を抽出する画像フィルタを作成する．
+	Image filter is assigned to each block. The union of blocks represents the image filter.
 
-3. キャンバス
+3. Canvas
 	
-	フィルタブロックを配置し，フィルタ群を作成する場所．
+	The filter blocks are placed. We can create the image filter as desired by joining blocks on here.
 
-4. 入力画面
+4. Input screen
 	
-	入力動画が表示される．
+	Input video image is displayed.
 
-5. 出力画面
+5. Output screen
 	
-	入力した動画に対してキャンバスに設置したフィルタを適応した結果が表示される．
+	The result image of adaptation of the filter represented on Canvas is displayed.
 
-6. Background生成メニュー
+6. Background generation menu
 	
-	入力動画の背景を抽出し，除去する．
+	Extract the background image from the input video.
 
 ### Filter Block Operation
-上述のキャンバス上でブロックを組み合わせることで，画像フィルタを作成する．
-本節ではブロックの操作方法について説明する．
+Now we create the image filter by combining the block on Canvas.
+In this section, we explain how to operate the block.
+
 #### Initial Block State
 ![txt](img/quick/uma_filtergenerator_initblock.png)
 
-起動時には`Output`ブロックと`Input`ブロックのみがキャンバス上に表示される．
-`Input`はソフトウェアに読み込ませた動画像のことを指しており，上述の『入力画面』に表示されている動画像のことである．
+At the time of start-up, only `Output` block and `Input` is displayed on Canvas.
+`Input` points to the input image displayed.
 
-そして，`Output`ブロックに接続されたブロックのデータが上述の『出力画面』に表示される．
-これらの`Input`ブロックと`Output`ブロックの間に各フィルタを意味するブロックを複数挟み込むことで画像フィルタを表現することが出来る．
-この例では`Input`ブロックが`Output`ブロックに直接接続されているので，`Input`ブロックのデータ，すなわち『入力画面』に表示された動画像が
-そのまま『出力画面』に表示される．
+The data of the connected to `Output` block is displayed in the "Output screen" described above.
+The blocks sandwiched between `Input` and `Output` represents the image filter.
+In this example, since `Input` block is connected directly to the `Output` block, Output screen shows the image which is displayed on Input screen.
 
 #### Add Block
-キャンバス上のブロック群へブロックを追加するには，フィルタツールチップからブロックをドラック＆ドロップすればよい．
+To insert a block into the block group on Canvas, drag-and-drop it from the filter tool tip to the block group.
 ![txt](img/quick/uma_filtergenerator_blockadding.png)
 ![txt](img/quick/uma_filtergenerator_blockadded.png)
 ```eval_rst
-.. note:: ドラッグ＆ドロップではなく，フィルタツールチップ上でフォーカス中に右クリックすることでもフィルタを追加することができる．
+.. note:: It is possible to insert a block by right-clicking while focusing on the filter tool chip.
 ```
 
-たとえばフィルタツールチップ`Filters`内の`BGRToGray`を追加すると，『出力画面』が『入力画面』のグレースケールへ変化する．
-このことから`BGRToGray`がグレースケールフィルタを意味していることがわかる．
+For example, if you insert a `BGRToGray` in the filter tool chip `Filters`, "output screen" is changed to gray scale of "input screen".
+This means `BGRToGray` is the gray-scale filter.
 
 ![txt](img/quick/uma_filtergenerator_dataflow.png)
 
-このとき入出力は，
+At this time,
 
-1. 『入力画面』に表示された動画像が`Input`ブロックを通して，
-2. `BGRToGray`ブロックに入力される．このブロックが入力されたデータをグレースケール動画像へ変換し，
-3. 変換後の動画像が`Output`ブロックに入力される．
-4. そして，`Output`ブロックに入力された動画像が『出力画面』に反映される．
-
-という流れとなっている．
+1. `Input` block passes the image which is displayed on Input screen to `BGRToGray` block.
+2. `BGRToGray` block converts the image passed from `Input` block and passes the processed image to `Output` block.
+3. `Output` block receives the image from `BGRToGray` block.
+4. Then, the image which is received by `Output` block is displayed on Output screen.
 
 #### Remove Block
-不要になったブロックを削除するには，『フィルタツールチップ』もしくは『キャンバス』上のゴミ箱へブロックをドラッグ＆ドロップすれば良い．
+To delete a block that is no longer needed, drag-and-drop the blocks to the "Filter tool tip" or the Trash on Canvas.
 ![txt](img/quick/uma_filtergenerator_blockremoving.png)
 ```eval_rst
-.. warning:: Outputブロックとブロックが離れている場合，使われていないブロックがある場合にはエラーとなり，出力が『出力画面』に反映されなくなる．
+.. warning:: If the block and another block is away or there is unused block, an error will occur and the output is not reflected to Output screen.
 
     .. list-table:: Error Examples
         :header-rows: 1
@@ -120,15 +114,15 @@
         * - Blocks
           - Description
         * - .. image:: img/quick/uma_filtergenerator_disconnectedoutputblock.png
-          - ブロックとブロックが離れている場合．
+          - If the block and another block is away.
         * - .. image:: img/quick/uma_filtergenerator_unusedblock.png
-          - 使われていないブロックがある場合．
+          - If there is unused block.
 ```
 
 #### Block Types
-ブロックは入力/出力があるかで3種類にわけることができる．
+Block can be divided into three types on whether there are Inputs/Output.
 
-**入力/出力ブロックには画像フィルタが割り当てられており，入力ブロックからの動画像をフィルタで変換したものを出力する．**
+**The block which has Inputs/Output means the specific image filter. The block converts the image from Inputs into Output by the image filter which is assigned to itself.**
 
 ```eval_rst
 .. list-table:: Block I/O Types
@@ -138,34 +132,30 @@
       - Type
       - Description
     * - .. image:: img/quick/uma_filtergenerator_inputonlyblock.png
-      - 入力ブロック
-      - 入力のみを受け付けるブロック．
+      - Input block
+      - Block that accepts Inputs only.
     * - .. image:: img/quick/uma_filtergenerator_inputoutputblock.png
-      - 入力/出力ブロック
-      - 入力と出力の両方をそなえたブロック．
+      - Inputs/Output block
+      - Block which has both Inputs and Output.
     * - .. image:: img/quick/uma_filtergenerator_outputonlyblock.png
-      - 出力ブロック
-      - 出力のみをもつブロック．
+      - Output block
+      - Block with the only output.
 ```
 
 ### How to Make your own Filter
 ![txt](img/quick/uma_filtergenerator_processed.png)
-**UMATracker-FilterGenerator**では，個体追跡したい物体の場所が白くなるフィルタを作成することが目標である．上図ではアリのいた場所のみ白くなっていることがわかる．
-そのためには
+In **UMATracker-FilterGenerator**, the goal is to create a filter which makes the location of the animal you want to track white and other locations black.In the figure above, it can be seen that regions that ants exist turned white.
+For that purpose, it is necessary the following procedure.
 
-1. グレースケール変換
-2. 二値化
-3. 解析に不要な領域の除去
-4. ノイズ除去
+1. Gray-scale transformation
+2. Binarization
+3. Removal of unwanted areas in the analysis
+4. Noise removal
 
-という手順をふむ必要がある．
+These process can be enough to individual tracking if there is sufficient contrast difference between animals and its background. If not, there are the additional options.
 
-追跡物体が背景と十分なコントラスト差をもっているときはこの手順で十分個体追跡が可能だが，そうでない場合は前段階として
-
-1. 背景の除去
-2. 色選択による追跡物体の抽出
-
-のいずれかをおこなうことで精度よく個体追跡が出来るようになる．
+1. Removal of background
+2. Extraction of the object to be tracked by color selection
 
 ![txt](img/quick/uma_filtergenerator_filtermakingsequence.png)
 
@@ -174,36 +164,35 @@
 ```
 
 #### Open the Video File
-メニューより`Files/Open Video File`を選択，もしくはビデオファイルをウインドウにドラッグアンドドロップすることで解析に使用するビデオを読み込む．
+Select the `Files / Open Video File` from the menu, or drag-and-drop the video file to the window.
 ![txt](img/quick/uma_filtergenerator_openfile.png)
 ```eval_rst
-.. warning:: ファイルサイズが大きい（GB単位），もしくは長時間のビデオ（15分以上）を読み込むとソフトウェアの動作が遅くなる場合がある．そのような時はビデオを扱う場合は事前にエンコード・動画の分割を行うと解決される．
+.. warning:: If the file size is large (GB unit), or there is a case in which a long period of time of the video (15 minutes or more), the software of the operation becomes slow. In such case, it is resolved by splitting the video or encoding video into the small size in advance.
 ```
 
 #### Generate Background
 
-
-背景除去を行うには，メニューより`Background/Create Background`を選択しバックグラウンド生成ダイアログを表示する．
+To do background removal, select `Background / Create Background` from the menu. Then, the background generation dialog is shown.
 
 ![txt](img/quick/uma_filtergenerator_bgsubdialog.png)
 
-まず背景生成に使用するビデオの始点と終点を指定する．
-スライダーを動かして，背景生成に使用する動画の始点を選び，Set Minボタンをクリックする．
-すると，始点以降のスライダーバーの色が赤に変化する．
-同様にスライダーを動かして，背景生成に使用する動画の終点を選び，Set Maxボタンをクリックすると
-終点以前のスライダーバーの色が赤になる．
-スライダーバーが赤色の部分のビデオが背景生成に使用される．
+First, specify the start and end points of the video to be used in the background generation.
+Move the slider to select the starting point of the video to be used in the background generation and click the Set Min button.
+Then, the color of the slider bar after starting point is changed to red.
+Similarly, by moving the slider, select the end point of the video to be used in the background generation and click the Set Max button
+End point the color of the previous slider bar becomes red.
+The red interval of the video slider bar is used in the background generation.
 ```eval_rst
-.. note:: 正しく背景生成を行うためには，動画の背景が静的（コントラストや位置が変化しない）であることが必要である．背景生成に使用するビデオの始点と終点を指定することで，背景が安定しない撮影開始時・終了時など背景生成に使用したくない部分を除くことが出来る．
+.. note:: For correct background generation, it is necessary that the background is static (contrast and viewpoint does not change).By specifying the start and end points of the video for the background generation, we can excluding the portion of the video which we do not want to use the background generation.
 ```
 
-つぎに解析に使うビデオのフレーム間隔をFrame deltaで指定する．
+Then, specify the video frame interval to use for the analysis into the Frame delta spin box.
 
-以上を指定後Generateボタンを押すと背景生成が開始される．
-背景生成終了後，結果がダイアログ右側のビューに背景除去された結果が反映されるので，スライダーを動かして背景除去に成功しているか確認する．
+Background generation is started by pressing the Generate button.
+After the background generation ends, the result image which have been background removal is shown in the right side of the view. Check whether you are successful in the background removal by moving the slider.
 
 ```eval_rst
-.. warning:: 背景生成に使用するフレーム数が多ければ安定して背景生成できるが，処理に時間が掛かる．このようなときは生成に使用するビデオの始点と終点，Frame Deltaを調整する．
+.. warning:: The background generation can be more stable if the large number of frames to be used, but it takes more time. In such case, adjust start and end points and the Frame Delta.
 ```
 
 ![txt](img/quick/uma_filtergenerator_bgsubexample.png)
@@ -213,7 +202,7 @@
 ```
 
 #### Color Filtering
-カラーマーカーが付いている場合など追跡物体が特徴的な色を有している場合，その色を抽出するフィルタを作成することで追跡物体を抽出することができる．
+If the animal has color marker or the characteristic color, it is possible to extract the animal by extracting the specific color.
 
 ```eval_rst
 .. list-table:: ColorFilter
@@ -222,17 +211,17 @@
     * - Block
       - Description
     * - .. image:: img/quick/uma_filtergenerator_colorfilter.png
-      - 右のカラーパレットで色を選択し左の類似度（数値）を調整することで色を選択する．
+      - Select a color by the color palette in the right side of the block and adjust the degree of similarity in number input field.
 ```
 
-`Color Filter`は`Filters`ツールチップに含まれている．
-ブロック左の赤色の部分をクリックするとカラーパレットがひらき，抽出したい色を選択することができる．
-ブロック右の数値入力欄は色の類似度を表しており，選択した色とどの程度類似した色を抽出するか調整可能となっている．
+`Color Filter` is included in the `Filters` tool tip.
+If you click the red portion of the block, the color palette appears. Then, select the color you want to extract.
+Numerical input field on the right side of block represents the similarity of colors.
 
 ![txt](img/quick/uma_filtergenerator_colorfilterio.png)
 
 ```eval_rst
-.. note:: ColorFilterブロックを選択後，『入力画面』上の抽出したい色の部分をクリックすることで色を選択することもできる．
+.. note:: While selecting ColorFilter block on Canvas, it is also possible to select a color by clicking the part to be extracted on "Input screen".
 ```
 
 ```eval_rst
@@ -241,39 +230,39 @@
 
 #### Convert to Gray Scale
 
-個体追跡したい物体の場所のみが白くなるフィルタを作成するためには，その前にカラー画像を各ピクセルが0 - 255の値を持つグレースケール画像に変換する必要がある．
-そこで`Filters`ツールチップに含まれる`BGRToGray`ブロックを用いて，カラー画像をグレースケール画像に変換する．
+In order to create a filter that only object of the region where you want to track is made white, there is a need to be converted to gray scale image that each pixel have a value between 0 and 255.
+To convert a color image into gray scale image, we use `BGRToGray` block in `Filter` tooltip.
 
-背景除去を行った後のアリの動画で`BGRToGray`ブロックを用いた例を示す．
+This is an example of applying a `BGRToGray` block into ants video after the background removal.
 ![txt](img/quick/uma_filtergenerator_blockadded.png)
 ![txt](img/quick/uma_filtergenerator_bgrtograyexample.png)
 
 ```eval_rst
-.. warning:: 例では見た目に変化はないが，必須の作業なので二値化の前に必ずおこなうこと．
+.. warning:: Even if there is no change in the appearance, be sure to perform it before binarizing because it is essential work.
 ```
 
 #### Binarize
 
 ![txt](img/quick/uma_filtergenerator_grayscale.png)
-グレースケール画像は各ピクセルが0 - 255の値を持っており，値0が黒をあらわし255に近い値であるほどそのピクセルは白に近い色となる．
-前述のグレースケール変換では画像の追跡したい固体の部分が明るく抜き出されているので，その部分のみを白く抜き出せば最初の目標の画像に到達できる．
+Gray scale image is the image each pixel is in from 0 to 255. The pixel which value close to 0 represents the black, value close to 255 represents the white.
+After the above gray scale conversion, the regions which you want to track have been bright gray color. We can reach the final goal of the image by converting them into white.
 
-そこで，`Threshold`ブロックをもちいて二値化をおこなう．
-二値化とは，グレースケール画像を白と黒の2階調画像に変換することであり，ある閾値を定めて，各ピクセルの値がその閾値を上回っているとき255（白），そうでないときは0（黒）にそのピクセルの値を変換する画像フィルタである．
+Image is binarized by `Threshold` block.
+The binarization is to convert the gray scale image into a black and white two-tone image. Each pixel is converted to 255 (white) when its value is above the pre-defined threshold, otherwise 0 (black).
 
-`Threshold`ブロックの右側の数値入力欄が閾値をあらわしている．
+The right side of `Threshold` block is the numerical value input field for the threshold.
 
-前述でグレースケール変換を行ったアリの動画で`Threshold`ブロックを用いた例を示す．
+Applying `Threshold` block to the gray-scale ants video which mentioned above becomes as follow.
 
 ![txt](img/quick/uma_filtergenerator_binarize.png)
 ![txt](img/quick/uma_filtergenerator_binarizeexample.png)
 
 #### Exclude the Obstacle by the Region Selector
 
-解析に不要な領域が個体追跡の精度に悪影響を及ぼすことがある．
-そこで範囲選択をおこなうことで，解析に不要な領域を除去する必要がある．
+Unwanted areas in analysis affects the accuracy of the individual tracking.
+Therefore remove the unwanted areas by selecting the area for analysis.
 
-`UMATracker-FilterGenerator`は矩形による選択`Rectangle selection`ブロック・楕円による選択`Circular selection`ブロック・任意の4頂点での範囲選択`Poly Selection`ブロックを有している．
+`UMATracker-FilterGenerator` has four types of region selection operator, `Poly Selection`, `Circular selection` and ` Rectangle selection` block.
 
 ```eval_rst
 .. list-table:: Selection/Exclusion Blocks
@@ -284,18 +273,18 @@
       - Type
       - Description
     * - .. image:: img/quick/uma_filtergenerator_rectsel.png
-      - 矩形
+      - Rectangle
       - .. image:: img/quick/uma_filtergenerator_rectselexample.png
     * - .. image:: img/quick/uma_filtergenerator_circsel.png
-      - 楕円
+      - Ellipse
       - .. image:: img/quick/uma_filtergenerator_circselexample.png
     * - .. image:: img/quick/uma_filtergenerator_polysel.png
-      - 4頂点
+      - Polygon
       - .. image:: img/quick/uma_filtergenerator_polyselexample.png
 ```
 
-前述で二値化を行ったアリの動画で`Circular selection`ブロックを用いた例を示す．
-前段階ではシャーレの縁が写っていたが，`Circular selection`ブロックを用いることでシャーレ内のみを抜き出すことに成功している．
+The following image shows the applying `Circular selection` block to the ant video which were binarized above.
+There are still remained edges of the petri dish on the left image. It has succeeded in extracting only in the dish by using `Circular selection` block on the right image.
 
 ![txt](img/quick/uma_filtergenerator_excludeblock.png)
 ![txt](img/quick/uma_filtergenerator_excludeexample.png)
@@ -309,285 +298,277 @@
 ```
 
 ```eval_rst
-.. note:: 各ブロックのチェックボックスをオフにすると，切り取られる領域が反転する．
+.. note:: If you set the check box of each block off, the cut area is reversed.
 ```
 
 #### Noise Reduction
-動画ファイルにはノイズが必ず含まれる．ノイズの原因は，観察者の移動などで発生する照度の微妙な変化・実験環境に含まれる微妙なチリ・動物の糞など様々である．これらのノイズを極力排除することで，精度良く個体追跡をおこなえる．
+The video images sometimes have noise.The cause of the noise is a variety, such as feces of animals, dusts, the illumination change or the movement of camera.By eliminating these noise as much as possible, it can be performed with high precision individual tracking.
 
-最も簡単なノイズ除去は`Erosion`ブロックを使うことである．
-Erosionは白色の領域を縮めるようなフィルタのことで，これを用いることで追跡物体よりも小さいノイズを除去することができる．
+The simplest noise removal is to use the `Erosion` block.
+Erosion is that the filter as reduce the white areas. It is possible to remove smaller noises than the object to be tracked.
 ![txt](img/quick/uma_filtergenerator_erosionexample.png)
 
-前述の不要な領域の除去を行ったアリの動画で`Erosion`ブロックを用いた例を示す．
+The following image shows an example of applying `Erosion` block to the ant video.
 
 ![txt](img/quick/uma_filtergenerator_noisereduction.png)
 
 #### Save Filter Data
-メニューより`Files/Save Filter Data`を選択することでフィルタデータ（拡張子`.filter`）が保存される．
+Filter data (extension `.filter`) is saved by selecting the `Files / Save Filter Data` from the menu.
 ```eval_rst
-.. warning:: Gray Scale変換・Binarizeを行っていない場合は個体追跡に失敗するので，保存前にGray Scale変換・Binarizeが行われていることを確認すること．
+.. warning:: If not Gray Scaled or Binarized, individual tracking fails. Be sure that the Gray Scale conversion and Binarize is performed before saving.
 ```
 
 ## UMATracker-Tracking
 
 ### Tracking Window
 
-以下に**UMATracker-Tracking**の画面各部の名称および説明を示す．
+The following shows the name and description of each part of the screen **UMATracker-Tracking**.
 
 ![txt](img/quick/uma_tracking_mainwindow.png)
 
-1. 個体追跡結果画面
+1. Tracking results view
     
-    入力動画と個体追跡結果を表示する．
+    Show the input video and individual tracking results.
 
-2. 個体追跡パラメタ設定画面
+2. Tracking parameter setting view
     
-    個体数など，トラッキングで使用する値を変更する．設定可能なパラメタはトラッキングアルゴリズムより異なる．
-    ここではデフォルトで使用されるGroupTracker GMMの設定画面を例に説明する．
+    Set the parameter in tracking, such as the number of individuals and so on.Configurable parameters vary with tracking algorithms.
+    In this section, it is described as an example of the setting screen of GroupTracker GMM, which is used by default.
     
 	![txt](img/quick/uma_tracking_settings.png)
 	
 	1. \#of objects
 		
-		追跡物体の個数を入力する．
+		Enter the number of the object to be tracked.
 	
 	2. \#of k-means
 		
-    	事前クラスタリングにおけるクラスタ数．通常は１の追跡物体数と同じ値を指定する．
+    	The number of clusters in pre-clustering. Usually specify the same value as the object to be tracked.
 	
 	3. Likelihood diff. threshold
 		
-    	前フレームでの個体追跡結果との類似度の閾値を表す．閾値をこえた場合はそれまで推定に用いてきた特徴情報を捨てて，新たに特徴情報を取得する．
+    	It represents a threshold value of similarity between the present tracking result and the previous one.If the likelihood exceed the threshold, discard the feature information that has been used and get the new feature information from image.
 	
 	4. Restart from this frame
 		
-    	追跡ミスを修正したあとに押すボタン．ボタンが押すと，修正を反映して現在のビデオ再生位置から個体追跡をやり直すことができる．
+    	Press this button after you fixed the tracking errors.When this button is pressed, it is possible to restart the tracking from the current video playback position as the correction reflected.
 	
 	5. Set/Reset
 		
-    	上記で設定したパラメタを適用して新たに個体追跡を開始するボタン．パラメタ変更後や個体追跡をやり直したいときに押すと，ビデオが開始位置に巻き戻される．これまでの追跡結果は破棄される．
+    	The Button to start a new individual track by applying the set of parameters above.You press the button when you want to redo the parameter change or redo the tracking from the start. The input video is rewound to the start position after pressed.Previous tracking results are discarded.
 
-3. 結果表示設定画面
+3. Result display setting screen
     
-    個体追跡結果の表示の詳細を設定する項目．
+    The display settings of the individual tracking results.
     * Radius
         
-        結果画面に表示される個体位置を表す点の大きさを設定する．
+        Set the size of the point that represents the individual position on the screen.
     
     * Line Width
         
-        結果画面に表示される個体の移動した軌跡の太さを設定する．
+        Set the thickness of the movement trajectory of the individual on the screen.
     
     * \# of overlay
         
-        前後何フレーム分の軌跡を結果画面に表示するかを設定する．
+        Set how much frames the trajectory shown on the screen.
 
-4. トラッキングアルゴリズム選択メニュー
+4. Tracking algorithm selection menu
     
-    **UMATracker-Tracking**には複数の個体追跡アルゴリズムが搭載されており，それをトラッキングアルゴリズム選択メニューから
-    選択することができる．
+    The **UMATracker-Tracking** has multiple individual tracking algorithms. You can select it from the tracking algorithm selection menu.
 
-5. Filesメニュー
+5. Files menu
     
-    動画・フィルタの読み込み，トラッキング結果の保存をおこなう．
+    Load video, filter or save the tracking result.
 
 ### Load the Video and its Filter data
-個体追跡を行うには，はじめに解析対象の動画と前述の**UMATracker-FilterGenerator**で作成したフィルタデータをドラッグ&ドロップで読み込む．
+At the beginning, drag-and-drop the video and its filter data that was created on **UMATracker-FilterGenerator**.
 
 ![txt](img/quick/uma_tracking_loaddata.png)
 
 ### Set Tracking Parameter
 ![txt](img/quick/uma_tracking_setparameter.png)
 
-つぎに個体追跡に必要なパラメタを個体追跡パラメタ設定画面で設定する．
-デフォルトで使用されるGroupTracker GMMでは追跡物体数(`# of objects`)を指定し，`Set/Reset`ボタンを押すと，個体追跡結果画面に個体位置を示す円と個体番号が表示される．
+Next, set the parameters required for the tracking on the tracking parameter settings view.
+In GroupTracker GMM, specify the number of tracking objects ( `# of objects`). After that, press the `Set / Reset` button. Circles that indicate individual positions and individual numbers are shown on tracking result view.
 
 ### Execute Object Tracking
-初期状態で正しく追跡物体位置が推定されているのを確認したあとビデオの再生を開始すると，ビデオの再生に併せて個体追跡が実行される．
+Check if the positions are estimated properly on the tracking result view. After the video playback started, the tracking will start on together.
 
 ```eval_rst
-.. note:: Run/Run Object Trackingメニューにより，ビデオの再生なしに個体追跡をおこなうこともできる．
+.. note:: By clicking Run/Run Object Tracking menu, it is also possible to carry out the individual track without video playback.
 ```
 
 ### Fix Mis-Detection
-ノイズなどの影響により，正しく個体追跡が行われなかったりエラーメッセージが出たりして個体追跡が破綻してしまうことがある．そのようなときは，破綻がおこったビデオ再生位置までビデオを巻き戻し，個体追跡結果画面の追跡結果をドラッグアンドドロップで修正する．そして`Restart from this frame`ボタンを押すことで修正後の状態から個体追跡を再開することができる．
+Due to the effects of noise, the individual tracking sometimes breaks down or gets an error message.In such a case, rewind the video to the position where the collapse happened, and modify the tracking result on the tracking results screen by drag-and-drop.Then, press the `Restart from this frame` button, and the individual tracking is resumed after the correction state.
 
 ```eval_rst
-.. note:: 追跡個体の入れ替わりや追跡結果のずれなど個体追跡が破綻していない場合は，次節のTrackingCorrectrで修正可能なので個体追跡中に修正を行う必要はない．
+.. note:: You can fix the individual tracking fail, such as swapping or displacement, by UMATrcker-TrackingCorrecter.
 ```
 
 ```eval_rst
-.. note:: 全ての個体追跡の破綻に対応することができるわけではない．そのような場合は，前節で作成したフィルタを修正する必要がある．
+.. note:: Not able to correspond to all failures.In such a case, there is a need to modify the filter that you created in the previous section.
 ```
 
 ### Save Tracking Data
-`Files/Save Data`メニューより，個体追跡によって得られた座標データを保存することができる．
+Press `Files / Save Data` menu, and save the coordinate data obtained by the individual tracking.
 
-1. ビデオの情報
+1. Information of the video
 	
-    FPSなど，読み込まれたビデオの詳細情報がテキストファイルとして保存される．
+    Such as FPS, detailed information of the loaded video is saved as a text file.
 
-2. 個体追跡結果
+2. Individual tracking results
 	
-	保存される追跡結果は個体追跡アルゴリズムに依存する．GroupTracker GMMでは個体追跡結果のデータが，ビデオフレーム番号を行・各個体の座標を列に持つCSVとして保存される．追跡結果表示画面に表示されている個体番号の順に各個体の座標が並ぶようになっている．
+	The tracking results will depend on the individual tracking algorithm.Results of GroupTracker GMM are saved as a CSV which row is a video frame number and column is tracking coordinate of each individual object.The coordinates of each individual are arranged in the order of the individual number that is displayed on the tracking result display view.
 	![txt](img/quick/uma_tracking_outputcsv.png)
 
 ## UMATracker-TrackingCorrector
-個体追跡において多くの場合で追跡ミスが起こるため，正しい追跡結果を得るためには追跡ミスの修正行程が必要になる．**UMATracker-TrackingCorrector**を使うことで，追跡ミスの修正を簡単に行うことができる．
+Since the tracking miss occurs in many cases, it is necessary to modify the stroke of tracking in order to obtain a correct tracking results.By using **UMATracker-TrackingCorrector**, you can easily correct tracking errors.
 
 ### TrackingCorrector Window
-以下に**UMATracker-TrackingCorrector**の画面各部の名称および説明を示す．
+The following shows the name and description of each part of the screen **UMATracker-TrackingCorrector**.
 
 ![txt](img/quick/uma_trackingcorrector_mainwindow.png)
 
-1. 個体追跡結果表示画面
+1. Individual tracking results view
 	
-    個体追跡結果を表示する画面．結果表示画面上で範囲選択することで，範囲選択された部分が右側の追跡結果画面に拡大表示される．
+    The view for displaying the individual tracking results.By range selection on the tracking results view, the range selected portion is enlarged and displayed on the right side of the window.
 
-2. 追跡結果拡大画面
-	結果表示画面において範囲選択された部分が拡大表示される．追跡結果を表す円を右クリックすると円が四角形に変化し，その個体の追跡データが選択状態になる．2個体の追跡データを選択状態にすると`Swap`ボタンが現れる．`Swap`ボタンをクリックすると，現在のビデオ再生位置以降の2つの個体の追跡データが入れ替わる．
+2. Tracking results expansion view
+	The range selected portion is enlarged and displayed in this view.When the circle which points the position of object is right-clicked, its tracking trajectory becomes selected. The shape of selected trajectories change to square. After selected two trajectories, the `Swap` button appears. The two trajectories after this video playback position will be swapped by clicking the `Swap` button.
 
-3. 結果表示設定画面
+3. Result display setting view
     
-    個体追跡結果の表示の詳細を設定する項目．
+    Set the display parameters of the tracking result.
     * Path Length
         
-        前後何フレーム分の軌跡を結果画面に表示するかを設定する．
+        Set how long to display the past and future trajectory from the current result.
     * Radius
         
-        結果画面に表示される個体位置を表す点の大きさを設定する．
+        Set the size of the marker that represents a result.
     
     * Mark Interval
         
-        目印の間隔の大きさを設定する．
-        各個体の追跡結果の軌跡に対して，ここで指定された間隔毎に黒点がうたれる．
+        Set the mark interval on each trajectory.
 
 4. Change the Order of Individual Numbers
 	
-    各個体に割り当てられている番号を入れ替えるための番号．
-    このメニューをクリックするとダイアログが表示され，入れ替えたい個体番号を指定し`Swap`ボタンを押すと個体番号が入れ替わる．
+    The menu for swapping the number assigned to each individual.
+    To exchange the numbers assigned to two individuals, select two number and click the `Swap` button.
     ![txt](img/quick/uma_trackingcorrector_swapdatanum.png)
 
 
 
 ### Data Correction
 
-つぎに実際の修正工程について説明する．
-まずは，解析対象のビデオと前述の**UMATracker-Tracking**によって得られた追跡データを
-ドラッグアンドドロップで**UMATracker-TrackingCorrector**に読み込ませる．
-つぎに，軌跡の変化を把握しやすくするため`Path Length`など表示の調整項目を調整し，
-再生しながら目視で追跡ミスを探す．
+First of all, drag-and-drop the video and its data obtained from **UMATracker-Tracking** into **UMATracker-TrackingCorrector**.
+Then, adjust items on the display, such as `Path Length`, to make it easier to find the mis-detection of trajectory.
 
 #### Zoom Up
 
-拡大機能を用いることで，追跡ミスが起きていそうなところを詳細に見ることができる．
-左側の結果表示画面でドラッグアンドドロップにより範囲選択を行うと，右側の拡大画面に範囲選択した領域が拡大表示される．
+By using the magnifying function, it is possible to find the place likely to occur the mis-tracking.
+When you do a region selection by the drag-and-drop on the left side of the result display screen, the selected region is shown on the tracking results expansion view, the right side of the window.
 
 ![txt](img/quick/uma_trackingcorrector_zoom.png)
 
 #### Fix the Position Aberration
 
-追跡ミスを見つけたら，右側の拡大画面でマーカーをドラッグアンドドロップすることで修正することができる．
+If you find a tracking mistake, it can be modified by dragging and dropping the marker on the tracking results expansion view.
 
 ![txt](img/quick/uma_trackingcorrector_fixdata.png)
 
 #### Correct the Data Swapping
 
-入れ替わりを見つけたら，入れ替わりが起こったビデオの再生位置を探す．
-入れ替わりが起こった再生位置を見つけたら，右側の拡大画面において入れ替わった2個体のマーカーをそれぞれ右クリックで選択する．
-すると`Swap`メニューが表示されるので，それをクリックすると入れ替わりが解消される．
+If you find a swapping between two trajectories, look for the video playback position of the video that turnover has occurred.
+Set the video playback position where the swapping occurred, and select the markers of two individuals on the tracking results expansion view.
+After selecting, `Swap` menu is shown. The swapping is fixed when you click `Swap` menu.
 
 ![txt](img/quick/uma_trackingcorrector_selectandswap.png)
 
 #### Save Data
 
-修正が完了したら，`Files/Save Data`メニューを選択して修正結果を保存する．
+Once the modification is complete, save the modified results by selecting the `Files / Save Data` menu.
 
 ## UMATracker-Area51
 
-**UMATracker-Area51**を使うことで，個体追跡結果を解析することができる．
-具体的には，解析に使用したビデオの画面上に領域・直線・点といったオブジェクトを配置することで
-解析を行う．
+**UMATracker-Area51** privides the analysis functions for individual tracking results.
+The analysis is carried out by arranging the object, such as area, line or point, on the video screen.
 
-* 領域オブジェクト
+* Area object
 	
-	直線領域を配置することにより，各個体からこの直線オブジェクトへの距離を算出することができる．
-    たとえば下図において，領域１（青）・領域２（赤）という二つの領域をビデオ上に配置する（左図）ことで，
-    各個体がいた領域の時間変化をダイアグラムとしてプロットすることができる（右図）．
+	By arranging the Area object, it is possible to calculate whether each individual are in this area or not on each video playback timing.
+    For example, in the figure below, two areas, the region 1 (blue) and the region 2 (red) is placed on the video (left).
+    After the calculation, the time variation of where each individual exists is plotted as a diagram (right).
     ![txt](img/quick/uma_area51_regionobject.png)
 
 * 直線オブジェクト
 	
-	直線オブジェクトを配置することにより，各個体からこの直線オブジェクトへの距離を算出することができる．
-    たとえば下図において，赤い直線をビデオ上に配置する（左図）ことで，各個体から赤い直線への距離の時間変化を
-    プロットすることができる（右図）．
+	By arranging the line object, it is possible to calculate the distance to the straight line object from each individual.
+    For example, in the figure below, the time variation plot of the distance to the red line, which is placed on the video (left), from each individual are shown.
     ![txt](img/quick/uma_area51_lineobject.png)
 
 * 点オブジェクト
-	点オブジェクトを配置することにより，各個体からこの点オブジェクトへの距離を算出することができる．
-    たとえば下図において，赤い点をビデオ上に配置する（左図）ことで，各個体から赤い点への距離の時間変化を
-    プロットすることができる（右図）．
+	By placing the point object, it is possible to calculate the distance to the point object from each individual.
+    For example, in the figure below, the time variation plot of the distance to the red dot, which is placed on the video (left), from each individual are shown.
     ![txt](img/quick/uma_area51_pointobject.png)
 
-また，**UMATracker-Area51**では個体間距離を基準とした個体間インタラクション解析を行うこともできる．
+Furthermore, **UMATracker-Area51** can analyse the inter-individual interaction analysis which is based on the distance between each individual.
 
 ![txt](img/quick/uma_area51_interactionexample.png)
 
 ### Area51 Window
 
-以下に**UMATracker-Area51**の画面各部の名称および説明をしめす．
+The following shows the name and description of each part of the screen **UMATracker-Area51**.
 ![txt](img/quick/uma_area51_mainwindow.png)
 
-1. 個体追跡結果/オブジェクト表示画面
+1. Individual tracking results/objects display screen
     
-    入力動画と個体追跡結果，およびユーザーによって追加されたオブジェクトを表示する．
+    Input video and individual tracking results, and to display the objects that were added by the user.
 
-2. オブジェクトリストテーブル
+2. Object list table
     
-    オブジェクトの固有名・色・種類を設定する画面．
+    The list of objects placed on the video screen. Each row corresponds to each object and shows the name, color, and type of its object.
     
-    * Name列
+    * Name column
     	
-        行に対応するオブジェクトの名称を表示する．
-        この列の要素をダブルクリックするとプルダウンメニューが表示され，ダブルクリックした要素の行に対応するオブジェクトの名称を変更できる．
+        The name of the object.
+        When you double-click on an cell of this column, you can edit the name of the object.
     
-    * Color列
+    * Color column
     	
-        行に対応するオブジェクトの表示色を表示する．
-        この列の要素をダブルクリックするとプルダウンメニューが表示され，ダブルクリックした要素の行に対応するオブジェクトの表示色を変更できる．
+        The display color of the object.
+        When you double-click on an element of this column, the pull-down menu are shown. You can change the new display color of the object by selecting the new color from the pull-down menu.
     
-    * Type列
+    * Type column
     	
-        行に対応するオブジェクトのタイプを表示する．
-        この列の要素をダブルクリックするとプルダウンメニューが表示され，ダブルクリックした要素の行に対応するオブジェクトの種類を変更できる．
+        The type of object (eg. Line, Point, etc.).
+        When you double-click on an element of this column, the pull-down menu are shown. You can change the type of the object by selecting the new type name from the pull-down menu.
 
-3. オブジェクト追加/削除/優先順位変更ボタン
+3. Object Add/Remove/Priorities change button
     
     * +/- Button
     	
-        オブジェクトを追加/削除するためのボタン．
-    * Up/Down 矢印ボタン
+        Add/delete the selected object.
+    * Up/Down arrow button
     	
-        オブジェクトの優先順位の入れ替えを行う．オブジェクトの優先順位に関しては後述する．
+        Perform replacement the priorities of objects.It will be described later.
 
-4. Radiusパラメタ入力ボックス
+4. Radius parameter input box
     
-    結果表示画面に表示された各個体を表す円マーカーの半径を設定する入力ボックス．
-    この値は個体間インタラクションを算出するときに用いられる（後述）．
+    Input box for the radius of the circle markers representing each individual.
+    This value is used when calculating the individual interaction (see below).
 
 ### Load the Video and Tracking Result
 
-解析に使用するビデオとその個体追跡結果データを，メインウインドウにドラックアンドドロップして読み込ませる．
+Drag-and-drop the video and tracking result data into the window.
 
 ### Add and Select Object
 
-次に，解析に使用するオブジェクトを追加する．
-画面右下の+ Buttonを押すとオブジェクトリストテーブルにオブジェクトが追加され，個体追跡結果/オブジェクト表示画面上にオブジェクトが表示される．
+Then, add an object to be used for analysis.
+When you press the `+ Button` in the lower right corner of the window, the object is added in the object list table and displayed in the individual tracking results/object display screen.
 ![txt](img/quick/uma_area51_addobject.png)
 
-オブジェクトの種類は，Distance Calculation Object TypeとRegion of Interest (RoI) Object Typeの2つのグループに分けることができる．
-以下の通りDistance Calculation Object Typeのオブジェクトは2種類，Region of Interest Object Typeのオブジェクトは3種類存在する．
+Type of object can be divided into two groups, `Distance Calculation Object Type` and `Region of Interest (RoI) Object Type`.
+`Distance Calculation Object Type` has 2 sub-types, and `Region of Interest Object Type` has 3 sub-types.
 
 1. Disntance Calculation Object Type
 	
@@ -600,92 +581,83 @@ Erosionは白色の領域を縮めるようなフィルタのことで，これ�
 	* Ellipse Object
 	* Polygon Object
 
-オブジェクトリストテーブルに表示されたオブジェクト行のType列をダブルクリックすると，プルダウンメニューが表示されてオブジェクトを変更することができる．
+The pull-down menu are shown when you double-click the Type column of an object row that are displayed in the list table. You can change the type of object by selecting the new type from the pull-down menu.
 
 ![txt](img/quick/uma_area51_selectobjecttype.png)
 
-オブジェクトリストテーブルに表示されたオブジェクト行のColor列をダブルクリックすると，プルダウンメニューが表示されてオブジェクトの色を変更することができる．
+By double-clicking the Color column of an object row that are displayed in the list table, you can change the color of object in the same way.
 
 ![txt](img/quick/uma_area51_selectcolor.png)
 
-```eval_rst
-.. warning:: 各セルに加えた変更は，セルの選択を解除しなければ反映されない．セルに変更を加えた後は，他のセルを選択するなどしてセルの選択を解除することすること．
-```
-
-オブジェクトリストテーブルには複数のオブジェクトを追加することができる．
-オブジェクトリストテーブル上のオブジェクトの並びはオブジェクトの順位をあらわしており，順位の低い順にオブジェクトが個体追跡結果/オブジェクト表示画面へ描画される．
-オブジェクトの順序は画面右下の上下ボタンにより変更することができる．
+You can add more than one object into the object list table.
+The arrangement of objects in the object list table represents the priority rank of the object. The object which has the low rank order is drawn to an individual tracking results / object display screen.
+Order of the objects can be changed by the up and down buttons at the bottom right of the screen.
 
 ```eval_rst
-.. warning:: オブジェクトが他のオブジェクトに隠れてしまうことで，オブジェクトを移動させることが出来なくなる場合がある．そのような場合，オブジェクトリストテーブル上でオブジェクトを選択し画面右下の上下ボタンを押してオブジェクトの順位を変更することで対応する．
+.. warning:: When the object is hidden to other objects, it may become impossible to move it. In such a case, it can be movable by changing its priority rank by Up/Down button.
 
    .. image:: img/quick/uma_area51_swaprow.png
 ```
 
 ### Data Analysis
 
-Distance Calculation Object Typeのオブジェクトを用いたDistance from a Point/Line Analysisと，Region of Interests Object Typeのオブジェクトを用いたRegion of Interests Analysisの二種類の解析を行うことが出来る．以下，それぞれの解析手法に関して操作手順を説明する．
+There are two types of analysis methods, "Distance from a Point / Line Analysis" by `Distance Calculation Object Type` and "Region of Interests Analysis" by `Region of Interests Object Type`.The following describes the operation procedure for each of the analysis technique.
 
 #### Distance from a Point/Line Analysis
 
-本解析では，個体追跡結果/オブジェクト表示画面上に配置されたPoint ObjectもしくはLine Objectから，各個体への距離を算出することが出来る．
+In this analysis, it is possible to calculate the distance to each individual from the `Point/Line Object` arranged in the individual tracking result/objects display screen.
 
-まず始めに，画面右下の+ Buttonを押してObjectを追加する．
-ある地点から各個体への距離を算出したい場合はPoint Objectを，ある直線から各個体への距離を算出したい場合はLine Objectを，
-追加したオブジェクトのType列をダブルクリックすると表示されるプルダウンメニューから選択する．
+First, add the Object by pressing the `+ Button` in the lower right corner of the screen.
+Then you select the object type from the pull-down menu that appears when you double-click on the Type column of the added object. Select The `Point Object Type` If you want to calculate the distance to each individual from a certain point. When you select the `Line Object Type`, you can calculate the distance from a straight line to each individual.
 
 1. Point Object
 	
-    このオブジェクトを選択すると，個体追跡結果/オブジェクト表示画面に四角の点が表示される．
-    四角の点をドラッグアンドドロップすることで，このオブジェクトの位置を変更できる．
-    `Run/Calculate`メニューを選択すると，このオブジェクトと各個体間の距離が算出される．
+    The square point are displayed on the individual tracking results/object display screen when you select this object.
+    By dragging and dropping the square point, you can change the position of the object.
+    The distance between the square point object and each individual is calculated by selecting the `Run / Calculate` menu.
 
 2. Line Object
 	
-    このオブジェクトを選択すると，個体追跡結果/オブジェクト表示画面に直線が表示される．
-    オブジェクトの両端に表示された端点をドラッグアンドドロップすることで直線の端の位置を変更できる．
-    また，表示された直線をドラッグアンドドロップすることで直線全体の位置を変更できる．
-    `Run/Calculate`メニューを選択すると，配置されたLine Objectから各個体への最短距離が算出される．
-    2次元空間上の座標を`$(x, y)$`であらわし，そこに配置されたLine Objectをあらわす直線の式を`$ax + by + c = 0$`であるとする．このとき，各固体の位置`$(x_i, y_i)$`から直線への最短距離は`$|ax_i + by_i +c|/\sqrt{a^2 + b^2}$`となる．
+    The straight line is shown on the individual tracking results / object display screen by selecting the Line Object.
+    You can change the position of the end of the straight line by dragging and dropping the displayed endpoints of it.
+    When you select the `Run / Calculate` menu, the shortest distance from the the Line Object to each individual is calculated.
+    Let the coordinates of a two-dimensional space as `$(x, y)$`, and the equation of the straight line which is placed on the individual tracking results/object display screen as `$ax + by + c = 0$`. In this case, the shortest distance from each individual position `$(x_i, y_i)$` to the straight line becomes `$|ax_i + by_i +c|/\sqrt{a^2 + b^2}$`.
 
-個体追跡結果/オブジェクト表示画面上に表示されたオブジェクトをドラッグアンドドロップすることで，位置や形状を変更することが出来る．
+It is possible to calculate the distance to each individual from each of the object you arranged by selecting the `Run / Calculate` menu.
+Data is calculated for each object and displayed as a Line Plot.
 
-`Run/Calculate`メニューを選択することで，配置されたそれぞれのオブジェクトから各個体への距離を算出することができる．
-各オブジェクトごとにウィンドウが表示され，各オブジェクトに対して算出されたデータがLine Plotとして表示される．
-
-解析結果は横軸がビデオフレーム番号，縦軸がオブジェクトからの距離のLine Plotで表示される．
-解析結果を表示するウインドウの名称は，解析対象オブジェクトの名称が表示される．
+Its abscissa represents video frame numbers and its ordinate represents the distance from the object.
+The name of the window that displays the analysis result is the name of the analyzed object.
 
 ![txt](img/quick/uma_area51_distancewindow.png)
 
 #### Region of Interests Analysis
 
-本解析では，各個体が画面上のどの位置に居たのかを算出することが出来る．
-この解析は，個体追跡結果/オブジェクト表示画面上にRoI Objectを配置し，
-そのRoI Objectの領域に個体が存在しているかを算出することで行われる．
+In this analysis, you can calculate where each individual is.
 
-まず始めに，画面右下の+ Buttonを押してObjectを追加する．
-RoI ObjectにはRectangular Object, Ellipse Object Polygon Objectの三種類が存在し，
-解析したい領域に合わせて選択する．
-個体追跡結果/オブジェクト表示画面上に表示されたオブジェクトはドラッグアンドドロップすることで位置を変更でき，
-白四角をドラッグアンドドロップすることで形状を変更することが出来る．
+This analysis outputs whether each individual is in the area of the RoI Object which you placed on the individual tracking results/object display screen.
 
-追加したオブジェクトを注目したい領域に合わせたあと`Run/Calculate`メニューを選択することで，各時刻における固体の位置を算出することができ，
-ダイアグラムとして可視化される．
-出力されたダイアグラムの横軸は時刻（ビデオフレーム番号）・縦軸は各個体の番号をあらわす．
-ダイアグラムの色はRoI Objectの色に対応しており，各個体が各時間に滞在したRoI Objectをあらわす．
+First, add the Object by pressing the `+ Button` in the lower right corner of the screen.
+There are three types of the RoI Objects, Rectangular Object, Ellipse Object and Polygon Object.
+You select these types according to the area which you want to analyze.
+You can change the position and shape of an object by dragging and dropping.
+
+After placing the object you added on the area to be focused and selecting the `Run / Calculate` menu, you can calculate which area, described as the object you placed, each individual is in.
+The result is visualized as a diagram.
+The horizontal axis of the diagram is time (video frame number), and the vertical axis represents the number of each individual.
+The color of the diagram corresponds to the color of the RoI Object where each individual has been stayed each time.
 
 ![txt](img/quick/uma_area51_roioutput.png)
 
 ```eval_rst
-.. warning:: RoI Objectを重ねて配置するときは注意が必要である．個体が複数のRoI Object上に存在するときは，そのRoI Objectのなかでもっとも順位の高いオブジェクト上に存在すると判定される．たとえば，
+.. warning:: When you arranged to overlap the RoI Object, attention is necessary at this time.When the individual exists on more than one RoI Object, it is judged to be in the most high rank RoI Object. For example:
 
    .. image:: img/quick/uma_area51_roiexample1.png
-   のようにRoI Objectを重ねて配置したとき，RoI Objectの順位によってA, Bのように出力が変わる．
+   Changing the order of the RoI Object A and B changes the result.
 
    .. image:: img/quick/uma_area51_roiexample2.png
 ```
 
 ### Save Data
 
-`Files/Save Data`メニューを選択して解析結果を保存することができる．
+Select the `Files / Save Data` menu to save the analysis results.

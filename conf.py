@@ -64,8 +64,8 @@ templates_path = ['_templates']
 master_doc = 'index'
 
 # General information about the project.
-project = 'UMATracker'
-copyright = '2016, Rito Takeuchi'
+project = 'UMATracker User\'s Guide (English)'
+copyright = '2017, Rito Takeuchi'
 author = 'Rito Takeuchi'
 
 # The version info for the project you're documenting, acts as replacement for
